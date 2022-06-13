@@ -1,20 +1,21 @@
 .nav {
-    padding: 20px;
-    grid-area: nav;
-    background: rgba(38, 81, 154, 0.555);
-    border-radius: 10px;
-  }
-  .nav div {
-    margin: 0 0 15px 0;
-    font-size: 23px;
-    padding: 0 0 15px 0;
-    border-bottom: 2px solid rgba(36, 33, 33, 0.344);
-  }
+  padding: 20px;
+  grid-area: nav;
+  background: rgba(38, 81, 154, 0.555);
+  border-radius: 10px;
+}
+.nav div {
+  margin: 0 0 15px 0;
+  font-size: 23px;
+  padding: 0 0 15px 0;
+  border-bottom: 2px solid rgba(36, 33, 33, 0.344);
+}
   
-  .nav a {
-    color:blanchedalmond;
-  }
+.nav a {
+  color:blanchedalmond;
+  transition: all 0.5s ease 0s;
+}
   
-  .nav a:hover {
-    color: rgb(25, 34, 43);
-  }
+.nav a:hover {
+  color: rgb(40, 50, 61);
+}

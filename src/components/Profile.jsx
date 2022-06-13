@@ -9,10 +9,12 @@ const Profile = () => {
             <div>
                <img className="img_2" src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" />
             </div>
-            <div>ava</div>
-            <div>mypost</div>
-            <div>newpost</div>
-            <div>post</div>
+            <div className="posts">
+                <div className="item">ava</div>
+                <div className="item">mypost</div>
+                <div className="item">newpost</div>
+                <div className="item">post</div>
+            </div>
         </div>
     );
 };
