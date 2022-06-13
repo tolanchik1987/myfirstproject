@@ -7,6 +7,7 @@ const Post = (props) => {
              {props.message}
              <div>
                 <button><img src="https://pngimg.com/uploads/like/like_PNG14.png"/>Like</button>
+                <p>Количество лайков: {props.likeCount}.</p>
              </div>
         </div>
     )

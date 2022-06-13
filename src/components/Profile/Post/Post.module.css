@@ -10,8 +10,6 @@
 .item button {
     border: 2px solid rgba(204, 204, 204, 0.599);
     border-radius: 10px;
-    text-align: center;
-    align-items: center;
     width: 65px;
     font-size: 16px;
 }
@@ -23,4 +21,8 @@
 
 .item button:active {
     box-shadow: 4px 4px 12px inset #000;
+}
+
+.item p {
+    margin: 5px 0 0 0;
 }
