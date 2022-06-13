@@ -1,3 +1,5 @@
+import "./Header.modul.css";
+
 const Header =() => {
     return(
         <header className="header">
