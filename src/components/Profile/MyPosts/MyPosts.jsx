@@ -1,3 +1,4 @@
+import Post from "../Post/Post";
 import classes from "./MyPosts.module.css";
 
 const MyPosts = () => {
@@ -6,10 +7,12 @@ const MyPosts = () => {
             <div className={classes.item}>ava</div>
             <div className={classes.item}>
                 <p>Mypost</p>
-                <p><textarea name="comment" cols="160" rows="3"></textarea></p>
+                <textarea cols="160" rows="3"></textarea>
+                <button>Add post</button>
             </div>
             <div className={classes.item}>newpost</div>
-            <div className={classes.item}>post</div>
+            <Post message="How i You?"/>
+            <Post message="Whot is your name?"/>
         </div>
     );
 };
