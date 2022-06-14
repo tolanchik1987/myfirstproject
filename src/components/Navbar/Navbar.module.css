@@ -10,10 +10,20 @@
   padding: 0 0 15px 0;
   border-bottom: 2px solid rgba(36, 33, 33, 0.344);
 }
-  
+
 .nav a {
   color:blanchedalmond;
   transition: all 0.5s ease 0s;
+}
+  
+.nav a.notActive {
+  color:blanchedalmond;
+  transition: all 0.5s ease 0s;
+}
+
+.nav a.activeLink {
+  color:black;
+  text-transform: uppercase;
 }
   
 .nav a:hover {
