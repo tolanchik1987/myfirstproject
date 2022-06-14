@@ -4,15 +4,15 @@
 }
 .item textarea {
     resize: none;
+    border: 4px double #000;
 }
 
 .item button {
-    border: 2px solid rgba(204, 204, 204, 0.599);
+    border: 3px double rgb(140, 139, 139);
     border-radius: 10px;
     width: 85px;
-    height: 25px;
+    height: 30px;
     font-size: 16px;
-    right: 1px;
 }
 
 .item button:active {
