@@ -6,17 +6,3 @@
     grid-template-columns: 2fr 10fr;
 }
 
-.dialog {
-  padding: 0 0 10px 0;
-}
-
-.dialog_items .activeLink {
-  color:black;
-}
-.dialog_items .notactive {
-  color: rgb(255, 255, 255);
-}
-
-.message {
-  padding: 0 0 10px 50px;
-}
