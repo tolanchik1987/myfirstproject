@@ -1,4 +1,4 @@
-.item p {
+.item h2 {
     margin-bottom: 10px;
     font-size: 23px;
 }
@@ -17,4 +17,24 @@
 
 .item button:active {
     box-shadow: 4px 4px 12px inset #000;
+}
+
+.item_ava {
+    display: flex;
+}
+
+.item_ava img {
+    width: 80px;
+    border-radius: 50%;
+    transition: all 0.8s ease 0s;
+}
+.item_ava img:hover {
+    transform: scale(1.08,1.08);
+}
+
+.userName {
+    text-transform: uppercase;
+    font-size: 23px;
+    text-shadow: 2px 2px 2px #000;
+    align-self: center;
 }
