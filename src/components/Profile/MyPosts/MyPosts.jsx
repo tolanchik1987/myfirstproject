@@ -1,14 +1,9 @@
 import Post from "../Post/Post";
 import classes from "./MyPosts.module.css";
 
-const MyPosts = () => {
+const MyPosts = (props) => {
 
-    const postData = [
-        {id: 1, message: "How i You?", likeCount: 15},
-        {id: 2, message: "Whot is your name?", likeCount: 35}
-    ]
-
-    const postItem = postData.map(post => <Post message={post.message} likeCount={post.likeCount}/>);
+    const postItem = props.postData.map(post => <Post message={post.message} likeCount={post.likeCount}/>);
 
     return (
     <div className={classes.posts}>
@@ -24,6 +19,7 @@ const MyPosts = () => {
                 <button>Add post</button>
             </div>
             <div className={classes.item}>newpost</div>
+            {postItem}
             {postItem}
         </div>
     );

@@ -1,0 +1,10 @@
+.dialog {
+    padding: 0 0 10px 0;
+}
+
+.dialog .activeLink {
+    color: black;
+}
+.dialog .notactive {
+    color: rgb(255, 255, 255);
+}
