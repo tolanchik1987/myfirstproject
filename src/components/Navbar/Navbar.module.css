@@ -4,19 +4,19 @@
   background: rgba(38, 81, 154, 0.555);
   border-radius: 10px;
 }
-.nav div {
+.nav nav div {
   margin: 0 0 15px 0;
   font-size: 23px;
   padding: 0 0 15px 0;
   border-bottom: 2px solid rgba(36, 33, 33, 0.344);
 }
 
-.nav a {
+.nav nav a {
   color:blanchedalmond;
   transition: all 0.5s ease 0s;
 }
   
-.nav a.notActive {
+.nav nav a.notActive {
   color:blanchedalmond;
   transition: all 0.5s ease 0s;
 }
