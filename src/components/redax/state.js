@@ -17,10 +17,10 @@ const state = {
         ],
          
         messageData: [
-            {message: "1. Counting objects: 100% (42/42), done." },
-            {message: "2 .Delta compression using up to 4 threads" },
-            {message: "3. Writing objects: 100% (27/27), 94.08 KiB | 1.40 MiB/s, done." },
-            {message: "4. Попробуйте новую кроссплатформенную оболочку PowerShell" }
+            {id: 1, message: "1. Counting objects: 100% (42/42), done." },
+            {id: 2, message: "2 .Delta compression using up to 4 threads" },
+            {id: 3, message: "3. Writing objects: 100% (27/27), 94.08 KiB | 1.40 MiB/s, done." },
+            {id: 4, message: "4. Попробуйте новую кроссплатформенную оболочку PowerShell" }
         ],
     }
 

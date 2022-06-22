@@ -1,9 +1,22 @@
+// import React from "react";
+import { useRef } from "react";
 import Post from "../Post/Post";
 import classes from "./MyPosts.module.css";
 
 const MyPosts = (props) => {
 
-    const postItem = props.postData.map(post => <Post message={post.message} likeCount={post.likeCount}/>);
+    const postItem = props.postData.map(post => <Post key={post.id} message={post.message} likeCount={post.likeCount}/>);
+
+    const newPostElement = useRef();
+    
+    const buttonAddPost = () => {
+        alert(newPostElement.current.value)
+        newPostElement.current.value = '';
+    } 
+
+    const clearMessage = () => {
+        if (newPostElement.current.value == "Enter message") {newPostElement.current.value = ''};
+    };
 
     return (
     <div className={classes.posts}>
@@ -15,8 +28,8 @@ const MyPosts = (props) => {
             </div>
             <div className={classes.item}>
                 <h2>Mypost</h2>
-                <textarea cols="160" rows="3"></textarea>
-                <button>Add post</button>
+                <textarea onClick={clearMessage} cols="160" rows="3" ref={newPostElement} defaultValue='Enter message'></textarea>
+                <button onClick={buttonAddPost}>Add post</button>
             </div>
             <div className={classes.item}>newpost</div>
             {postItem}

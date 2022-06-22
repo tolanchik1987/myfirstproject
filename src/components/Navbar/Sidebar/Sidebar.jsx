@@ -1,6 +1,6 @@
 import classes from "./Sidebar.module.css";
 
-const Sidebar = () => {
+const Sidebar = (props) => {
     return(
         <div className={classes.conteiner_sideBar}>
             <h2>Friends</h2>
