@@ -1,5 +1,28 @@
-const state = {
+import { useState } from "react";
+import { rerenderEntireTree } from "../../render";
 
+
+export const addMessage = (postMessage) => {
+    const newMessage = {
+        id: state.dialogsPage.messageData.map((el)=> {el.id = el.id + 1}),
+        message: postMessage
+    };
+    state.dialogsPage.messageData.push(newMessage);
+    rerenderEntireTree(state);
+};
+
+export const addPost = (postMessage) => {
+    const newPost = {
+        id: state.profilePage.postData.map((el)=> {el.id = el.id + 1}),
+        message: postMessage,
+        likeCount: 0
+    };
+    state.profilePage.postData.push(newPost);
+    rerenderEntireTree(state);
+};
+
+
+const state = {
     profilePage: {
         postData: [
             {id: 1, message: "How i You?", likeCount: 15},
@@ -23,7 +46,6 @@ const state = {
             {id: 4, message: "4. Попробуйте новую кроссплатформенную оболочку PowerShell" }
         ],
     }
-
 };    
 
 export default state;

@@ -17,16 +17,16 @@ const App = (props) => {
             <Navbar />
             <div className="app-wrapper-content">
                <Routes>
-                  <Route path="/" element={<Profile state={props.state.profilePage}/>} />
-                  <Route path="/Profile" element={<Profile state={props.state.profilePage}/>} />
-                  <Route path="/Dialogs" element={<Dialogs state={props.state.dialogsPage}/>} />
+                  <Route path="/" element={<Profile state={props.state.profilePage} addPost={props.addPost} />} />
+                  <Route path="/Profile" element={<Profile state={props.state.profilePage} addPost={props.addPost} />} />
+                  <Route path="/Dialogs" element={<Dialogs state={props.state.dialogsPage} addMessage={props.addMessage} />} />
                   <Route path="/News" element={<News />} />
                   <Route path="/Settings" element={<Settings />} />
                   <Route path="/Music" element={<Music />} />
-                  <Route path="/Dialogs/dialog_1" element={<Dialogs state={props.state.dialogsPage}/>} />
-                  <Route path="/Dialogs/dialog_2" element={<Dialogs state={props.state.dialogsPage}/>} />
-                  <Route path="/Dialogs/dialog_3" element={<Dialogs state={props.state.dialogsPage}/>} />
-                  <Route path="/Dialogs/dialog_4" element={<Dialogs state={props.state.dialogsPage}/>} />
+                  <Route path="/Dialogs/dialog_1" element={<Dialogs state={props.state.dialogsPage} addMessage={props.addMessage}/>} />
+                  <Route path="/Dialogs/dialog_2" element={<Dialogs state={props.state.dialogsPage} addMessage={props.addMessage}/>} />
+                  <Route path="/Dialogs/dialog_3" element={<Dialogs state={props.state.dialogsPage} addMessage={props.addMessage}/>} />
+                  <Route path="/Dialogs/dialog_4" element={<Dialogs state={props.state.dialogsPage} addMessage={props.addMessage}/>} />
                </Routes>
             </div>
          </div>
