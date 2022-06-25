@@ -1,35 +1,51 @@
-// import React from "react";
 import { useRef } from "react";
+import { updateNewPostText } from "../../redax/state";
 import Post from "../Post/Post";
 import classes from "./MyPosts.module.css";
 
 const MyPosts = (props) => {
-
-   const postItem = props.postData.map(post => <Post key={post.id} message={post.message} likeCount={post.likeCount}/>);
+   const postItem = props.postData.map((post) => (
+      <Post key={post.id} message={post.message} likeCount={post.likeCount} />
+   ));
 
    const newPostElement = useRef();
-    
+
    const buttonAddPost = () => {
-      props.addPost(newPostElement.current.value)
-      newPostElement.current.value = '';
-   }; 
+      props.addPost();
+   };
 
    const clearMessage = () => {
-      if (newPostElement.current.value == "Enter message") {newPostElement.current.value = ''};
+      if (newPostElement.current.value == "Enter message") {
+         newPostElement.current.value = "";
+      }
+   };
+
+   const onChangePost = () => {
+      props.updateNewPostText(newPostElement.current.value);
+      newPostElement.current.value = "";
    };
 
    return (
       <div className={classes.posts}>
          <div className={classes.item}>
-               <div className={classes.item_ava}>
-                  <img src="https://vraki.net/sites/default/files/inline/images/2_3.png" />
-                  <div className={classes.userName}>Anatoliy</div>
-               </div>
+            <div className={classes.item_ava}>
+               <img src="https://vraki.net/sites/default/files/inline/images/2_3.png" />
+               <div className={classes.userName}>Anatoliy</div>
+            </div>
          </div>
          <div className={classes.item}>
-               <h2>Mypost</h2>
-               <textarea onClick={clearMessage} cols="160" rows="3" ref={newPostElement} defaultValue='Enter message'/>
-               <button onClick={buttonAddPost} type="button">Add post</button>
+            <h2>Mypost</h2>
+            <textarea
+               onChange={onChangePost}
+               onClick={clearMessage}
+               cols="160"
+               rows="3"
+               ref={newPostElement}
+               value={props.newPostText}
+            />
+            <button onClick={buttonAddPost} type="button">
+               Add post
+            </button>
          </div>
          <div className={classes.item}>newpost</div>
          {postItem}
