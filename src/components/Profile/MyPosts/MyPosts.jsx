@@ -4,8 +4,9 @@ import Post from "../Post/Post";
 import classes from "./MyPosts.module.css";
 
 const MyPosts = (props) => {
+
    const postItem = props.postData.map((post) => (
-      <Post key={post.id} message={post.message} likeCount={post.likeCount} />
+      <Post key={post.id} message={post.message} likeCount={post.likeCount} btnIncrement={props.btnIncrement} newLikeCount={props.newLikeCount}/>
    ));
 
    const newPostElement = useRef();

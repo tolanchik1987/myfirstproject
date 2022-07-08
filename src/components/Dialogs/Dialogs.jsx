@@ -14,16 +14,19 @@ const Dialogs = (props) => {
 
    const newMessageElement = useRef();
 
-   const [messageText, setMessageText] = useState("Enter message");
-
    const buttonAddMessage = () => {
-      props.addMessage(newMessageElement.current.value);
+      props.addMessage();
    };
 
    const clearMessage = () => {
       if (newMessageElement.current.value == "Enter message") {
          newMessageElement.current.value = "";
       }
+   };
+
+   const onChangeMessage = () => {
+      props.updateNewMessageText(newMessageElement.current.value);
+      newMessageElement.current.value = "";
    };
 
    return (
@@ -39,8 +42,8 @@ const Dialogs = (props) => {
                      ref={newMessageElement}
                      cols="100"
                      rows="10"
-                     value={messageText}
-                     onChange={(e) => setMessageText(e.target.value)}
+                     value={props.state.newMessageText}
+                     onChange={onChangeMessage}
                   />
                </div>
                <div>
