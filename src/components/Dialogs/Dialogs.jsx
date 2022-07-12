@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { addMessageCreator, updateNewMessageText } from "../redax/state";
 import DialogItem from "./DialogItem/DialogItem";
 import classes from "./Dialogs.module.css";
 import Message from "./Message/Message";
@@ -15,7 +16,7 @@ const Dialogs = (props) => {
    const newMessageElement = useRef();
 
    const buttonAddMessage = () => {
-      props.addMessage();
+      props.dispatch(addMessageCreator());
    };
 
    const clearMessage = () => {
@@ -24,8 +25,8 @@ const Dialogs = (props) => {
       }
    };
 
-   const onChangeMessage = () => {
-      props.updateNewMessageText(newMessageElement.current.value);
+   const onChangeMessage = (event) => {
+      props.dispatch(updateNewMessageText(event.target.value));
       newMessageElement.current.value = "";
    };
 

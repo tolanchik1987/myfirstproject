@@ -1,38 +1,12 @@
-let store = {
+const ADD_POST = "ADD-POST";
+const ADD_MESSAGE = "ADD-MESSAGE";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
+const BTN_INCREMENT = "BTN-INCREMENT";
+
+const store = {
    _callSubscriber() {
       "chenged";
-   },
-   addMessage() {
-      const newMessage = {
-         id: this._state.dialogsPage.id++,
-         message: this._state.dialogsPage.newMessageText,
-      };
-      this._state.dialogsPage.messageData.push(newMessage);
-      this.updateNewPostText("");
-      this._callSubscriber(this._state);
-      console.log(newMessage);
-   },
-   btnIncrement() {
-      this._state.profilePage.newLikeCount++;
-      this._callSubscriber(this._state);
-   },
-   addPost() {
-      const newPost = {
-         id: this._state.profilePage.id++,
-         message: this._state.profilePage.newPostText,
-         likeCount: this._state.profilePage.newLikeCount,
-      };
-      this._state.profilePage.postData.push(newPost);
-      this.updateNewPostText("");
-      this._callSubscriber(this._state);
-   },
-   updateNewPostText(newText) {
-      this._state.profilePage.newPostText = newText;
-      this._callSubscriber(this._state);
-   },
-   updateNewMessageText(newText) {
-      this._state.dialogsPage.newMessageText = newText;
-      this._callSubscriber(this._state);
    },
    subscribe(observer) {
       this._callSubscriber = observer;
@@ -77,6 +51,59 @@ let store = {
    getState() {
       return this._state;
    },
+   dispatch(action) {
+      if (action.type === ADD_POST) {
+         const newPost = {
+            id: this._state.profilePage.id++,
+            message: this._state.profilePage.newPostText,
+            likeCount: this._state.profilePage.newLikeCount,
+         };
+         this._state.profilePage.postData.push(newPost);
+         this._callSubscriber(this._state);
+      } else if (action.type === ADD_MESSAGE) {
+         const newMessage = {
+            id: this._state.dialogsPage.id++,
+            message: this._state.dialogsPage.newMessageText,
+         };
+         this._state.dialogsPage.messageData.push(newMessage);
+         this._callSubscriber(this._state);
+      } else if (action.type === UPDATE_NEW_POST_TEXT) {
+         this._state.profilePage.newPostText = action.newText;
+         this._callSubscriber(this._state);
+      } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+         this._state.dialogsPage.newMessageText = action.newText;
+         this._callSubscriber(this._state);
+      } else if (action.type === BTN_INCREMENT) {
+         // this._state.profilePage.newLikeCount=+1;
+         this._callSubscriber(this._state);
+      }
+   },
+};
+
+export const addPostActionCreator = () => {
+   return {
+      type: "ADD-POST",
+   };
+};
+
+export const updateNewPostText = (text) => {
+   return {
+      type: "UPDATE-NEW-POST-TEXT",
+      newText: text,
+   };
+};
+
+export const addMessageCreator = () => {
+   return {
+      type: "ADD-MESSAGE",
+   };
+};
+
+export const updateNewMessageText = (text) => {
+   return {
+      type: "UPDATE-NEW-MESSAGE-TEXT",
+      newText: text,
+   };
 };
 
 export default store;

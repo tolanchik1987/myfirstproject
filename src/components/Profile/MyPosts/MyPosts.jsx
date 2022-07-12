@@ -1,18 +1,23 @@
 import { useRef } from "react";
-import { updateNewPostText } from "../../redax/state";
+import { addPostActionCreator, updateNewPostText } from "../../redax/state";
 import Post from "../Post/Post";
 import classes from "./MyPosts.module.css";
 
 const MyPosts = (props) => {
-
    const postItem = props.postData.map((post) => (
-      <Post key={post.id} message={post.message} likeCount={post.likeCount} btnIncrement={props.btnIncrement} newLikeCount={props.newLikeCount}/>
+      <Post
+         key={post.id}
+         message={post.message}
+         likeCount={post.likeCount}
+         dispatch={props.dispatch}
+         newLikeCount={props.newLikeCount}
+      />
    ));
 
    const newPostElement = useRef();
 
    const buttonAddPost = () => {
-      props.addPost();
+      props.dispatch(addPostActionCreator());
    };
 
    const clearMessage = () => {
@@ -21,8 +26,8 @@ const MyPosts = (props) => {
       }
    };
 
-   const onChangePost = () => {
-      props.updateNewPostText(newPostElement.current.value);
+   const onChangePost = (event) => {
+      props.dispatch(updateNewPostText(event.target.value));
       newPostElement.current.value = "";
    };
 
@@ -35,7 +40,7 @@ const MyPosts = (props) => {
             </div>
          </div>
          <div className={classes.item}>
-            <h2>Mypost</h2>
+            <h2>My post</h2>
             <textarea
                onChange={onChangePost}
                onClick={clearMessage}
