@@ -1,8 +1,5 @@
-const ADD_POST = "ADD-POST";
-const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
-const BTN_INCREMENT = "BTN-INCREMENT";
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
 
 const store = {
    _callSubscriber() {
@@ -52,31 +49,9 @@ const store = {
       return this._state;
    },
    dispatch(action) {
-      if (action.type === ADD_POST) {
-         const newPost = {
-            id: this._state.profilePage.id++,
-            message: this._state.profilePage.newPostText,
-            likeCount: this._state.profilePage.newLikeCount,
-         };
-         this._state.profilePage.postData.push(newPost);
-         this._callSubscriber(this._state);
-      } else if (action.type === ADD_MESSAGE) {
-         const newMessage = {
-            id: this._state.dialogsPage.id++,
-            message: this._state.dialogsPage.newMessageText,
-         };
-         this._state.dialogsPage.messageData.push(newMessage);
-         this._callSubscriber(this._state);
-      } else if (action.type === UPDATE_NEW_POST_TEXT) {
-         this._state.profilePage.newPostText = action.newText;
-         this._callSubscriber(this._state);
-      } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-         this._state.dialogsPage.newMessageText = action.newText;
-         this._callSubscriber(this._state);
-      } else if (action.type === BTN_INCREMENT) {
-         // this._state.profilePage.newLikeCount=+1;
-         this._callSubscriber(this._state);
-      }
+      profileReducer(this._state.profilePage, action);
+      dialogsReducer(this._state.dialogsPage, action);
+      this._callSubscriber(this._state);
    },
 };
 

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { addPostActionCreator, updateNewPostText } from "../../redax/state";
+import { addPostActionCreator, updateNewPostText } from "../../redax/profile-reducer";
 import Post from "../Post/Post";
 import classes from "./MyPosts.module.css";
 

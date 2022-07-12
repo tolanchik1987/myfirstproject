@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { addMessageCreator, updateNewMessageText } from "../redax/state";
+import { useRef } from "react";
+import { addMessageCreator, updateNewMessageText } from "../redax/dialogs-reducer";
 import DialogItem from "./DialogItem/DialogItem";
 import classes from "./Dialogs.module.css";
 import Message from "./Message/Message";
