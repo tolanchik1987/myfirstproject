@@ -3,11 +3,11 @@ import "../src/components/Null.css";
 import Profile from "./components/Profile/Profile";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
-import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import DialogsConteiner from "./components/Dialogs/DialogsConteiner";
 
 const App = (props) => {
    return (
@@ -17,71 +17,33 @@ const App = (props) => {
             <Navbar />
             <div className="app-wrapper-content">
                <Routes>
-                  <Route
-                     path="/"
-                     element={
-                        <Profile
-                           state={props.state.profilePage}
-                           dispatch={props.dispatch}
-                        />
-                     }
-                  />
+                  <Route path="/" element={<Profile />} />
                   <Route
                      path="/Profile"
-                     element={
-                        <Profile
-                           state={props.state.profilePage}
-                           dispatch={props.dispatch}
-                        />
-                     }
+                     element={<Profile />}
                   />
                   <Route
                      path="/Dialogs"
-                     element={
-                        <Dialogs
-                           state={props.state.dialogsPage}
-                           dispatch={props.dispatch}
-                        />
-                     }
+                     element={<DialogsConteiner />}
                   />
                   <Route path="/News" element={<News />} />
                   <Route path="/Settings" element={<Settings />} />
                   <Route path="/Music" element={<Music />} />
                   <Route
                      path="/Dialogs/dialog_1"
-                     element={
-                        <Dialogs
-                           state={props.state.dialogsPage}
-                           dispatch={props.dispatch}
-                        />
-                     }
+                     element={<DialogsConteiner />}
                   />
                   <Route
                      path="/Dialogs/dialog_2"
-                     element={
-                        <Dialogs
-                           state={props.state.dialogsPage}
-                           dispatch={props.dispatch}
-                        />
-                     }
+                     element={<DialogsConteiner />}
                   />
                   <Route
                      path="/Dialogs/dialog_3"
-                     element={
-                        <Dialogs
-                           state={props.state.dialogsPage}
-                           dispatch={props.dispatch}
-                        />
-                     }
+                     element={<DialogsConteiner />}
                   />
                   <Route
                      path="/Dialogs/dialog_4"
-                     element={
-                        <Dialogs
-                           state={props.state.dialogsPage}
-                           dispatch={props.dispatch}
-                        />
-                     }
+                     element={<DialogsConteiner />}
                   />
                </Routes>
             </div>

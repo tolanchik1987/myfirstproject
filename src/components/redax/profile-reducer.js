@@ -2,7 +2,17 @@ const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const BTN_INCREMENT = "BTN-INCREMENT";
 
-function profileReducer(state, action) {
+const initialState = {
+    postData: [
+       { id: 1, message: "How i You?", likeCount: 15 },
+       { id: 2, message: "Whot is your name?", likeCount: 35 },
+    ],
+    id: 0,
+    newPostText: "Enter message",
+    newLikeCount: 0,
+ }
+
+function profileReducer(state = initialState, action) {
    switch (action.type) {
       case ADD_POST:
          const newPost = {

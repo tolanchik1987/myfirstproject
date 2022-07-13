@@ -1,22 +1,22 @@
 import { useRef } from "react";
-import { addMessageCreator, updateNewMessageText } from "../redax/dialogs-reducer";
 import DialogItem from "./DialogItem/DialogItem";
 import classes from "./Dialogs.module.css";
 import Message from "./Message/Message";
 
 const Dialogs = (props) => {
-   const dialogElements = props.state.dialogsData.map((dialog) => (
+
+   const dialogElements = props.dialogsPage.dialogsData.map((dialog) => (
       <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} />
    ));
 
-   const messagesElements = props.state.messageData.map((message) => (
+   const messagesElements = props.dialogsPage.messageData.map((message) => (
       <Message key={message.id} message={message.message} />
    ));
 
    const newMessageElement = useRef();
 
    const buttonAddMessage = () => {
-      props.dispatch(addMessageCreator());
+      props.addMessageCreator();
    };
 
    const clearMessage = () => {
@@ -25,8 +25,8 @@ const Dialogs = (props) => {
       }
    };
 
-   const onChangeMessage = (event) => {
-      props.dispatch(updateNewMessageText(event.target.value));
+   const onChangeMessage = () => {
+      props.updateNewMessageText(newMessageElement.current.value)
       newMessageElement.current.value = "";
    };
 
@@ -43,7 +43,7 @@ const Dialogs = (props) => {
                      ref={newMessageElement}
                      cols="100"
                      rows="10"
-                     value={props.state.newMessageText}
+                     value={props.dialogsPage.newMessageText}
                      onChange={onChangeMessage}
                   />
                </div>

@@ -1,4 +1,5 @@
 import MyPosts from "./MyPosts/MyPosts";
+import MyPostsConteiner from "./MyPosts/MyPostsConteiner";
 import classes from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
@@ -6,11 +7,8 @@ const Profile = (props) => {
    return (
       <div className={classes.content}>
          <ProfileInfo />
-         <MyPosts
-            newLikeCount={props.state.newLikeCount}
-            postData={props.state.postData}
-            newPostText={props.state.newPostText}
-            dispatch={props.dispatch}
+         <MyPostsConteiner
+            store={props.store}
          />
       </div>
    );

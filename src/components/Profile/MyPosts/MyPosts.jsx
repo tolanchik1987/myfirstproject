@@ -16,8 +16,8 @@ const MyPosts = (props) => {
 
    const newPostElement = useRef();
 
-   const buttonAddPost = () => {
-      props.dispatch(addPostActionCreator());
+   const onAddPost = () => {
+      props.addPostActionCreator();
    };
 
    const clearMessage = () => {
@@ -26,8 +26,9 @@ const MyPosts = (props) => {
       }
    };
 
-   const onChangePost = (event) => {
-      props.dispatch(updateNewPostText(event.target.value));
+   const onChangePost = () => {
+      props.updateNewPostText(newPostElement.current.value)
+      //props.dispatch(updateNewPostText(event.target.value));
       newPostElement.current.value = "";
    };
 
@@ -49,7 +50,7 @@ const MyPosts = (props) => {
                ref={newPostElement}
                value={props.newPostText}
             />
-            <button onClick={buttonAddPost} type="button">
+            <button onClick={onAddPost} type="button">
                Add post
             </button>
          </div>
