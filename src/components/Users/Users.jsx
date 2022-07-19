@@ -1,10 +1,6 @@
 import { FollowAC } from "../redax/users-reducer";
 import classes from "./Users.module.css";
 
-const follow = () => {
-   FollowAC();
-};
-
 const Users = (props) => {
    return (
       <div className={classes.conteiner}>
@@ -12,14 +8,25 @@ const Users = (props) => {
          {props.usersPage.map((user) => (
             <div key={user.id} className={classes.conteiner_users}>
                <div className={classes.users}>
-                  User
-                  <img
-                     className={classes.img}
-                     src={user.fotoUrl}
-                  />
-                  <button className={classes.btn_followed} onClick={follow}>
-                     {user.followed ? "followed" : "Unfollowed"}
-                  </button>
+                  {user.fullName}
+                  <img className={classes.img} src={user.fotoUrl} />
+                  <div>
+                     {user.followed ? (
+                        <button
+                           className={classes.btn_followed}
+                           onClick={() => props.unFollow(user.id)}
+                        >
+                           Follow
+                        </button>
+                     ) : (
+                        <button
+                           className={classes.btn_followed}
+                           onClick={() => props.follow(user.id)}
+                        >
+                           Unfollow
+                        </button>
+                     )}
+                  </div>
                </div>
                <div className={classes.userInfo}>
                   <div>
@@ -27,8 +34,12 @@ const Users = (props) => {
                      <div className={classes.userStatus}>{user.status}</div>
                   </div>
                   <div>
-                     <div className={classes.userLocation}>{user.location.country}</div>
-                     <div className={classes.userCity}>{user.location.city}</div>
+                     <div className={classes.userLocation}>
+                        {user.location.country}
+                     </div>
+                     <div className={classes.userCity}>
+                        {user.location.city}
+                     </div>
                   </div>
                </div>
             </div>
