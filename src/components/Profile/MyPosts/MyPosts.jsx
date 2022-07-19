@@ -1,16 +1,14 @@
 import { useRef } from "react";
-import { addPostActionCreator, updateNewPostText } from "../../redax/profile-reducer";
 import Post from "../Post/Post";
 import classes from "./MyPosts.module.css";
 
 const MyPosts = (props) => {
-   const postItem = props.postData.map((post) => (
+   const postItem = props.postData.map((post, index) => (
       <Post
-         key={post.id}
+         key={index}
          message={post.message}
-         likeCount={post.likeCount}
-         dispatch={props.dispatch}
          newLikeCount={props.newLikeCount}
+         btnIncrement={props.btnIncrement}
       />
    ));
 

@@ -1,4 +1,3 @@
-import MyPosts from "./MyPosts/MyPosts";
 import MyPostsConteiner from "./MyPosts/MyPostsConteiner";
 import classes from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";

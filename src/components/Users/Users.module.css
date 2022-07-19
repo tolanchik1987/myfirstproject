@@ -1,0 +1,74 @@
+.conteiner {
+    font-size: 24px;
+    margin: 20px;
+    color: rgb(250, 250, 250);
+}
+
+.conteiner_users{
+    margin:50px 0 0 0;
+    display: flex;
+}
+
+.users{
+    margin: 10px;
+    padding: 10px;
+    width: 250px;
+    background: rgba(255, 255, 255, 0.50);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid grey;
+    border-radius: 20px; 
+}
+
+.img{
+    width: 100px;
+    margin: 10px 0 10px 0;
+}
+
+.btn_followed{
+    font-size: 20px;
+    color: red;
+    margin: 0 0 10px 0;
+    border: 2px solid rgb(172, 172, 172);
+    border-radius: 5px;
+    width: 120px;
+    height: 40px;
+}
+
+.btn_followed:active{
+    box-shadow: 4px 4px 12px inset #000;
+}
+
+.userInfo{
+    margin: 10px;
+    width: 550px;
+    background: rgba(255, 255, 255, 0.50);
+    border: 2px solid grey;
+    border-radius: 20px;
+    /* text-align: center; */
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.btn_showMore{
+    margin: 50px 0 0 400px;
+    border: 2px solid rgb(172, 172, 172);
+    border-radius: 5px;
+    height: 50px;
+    width: 150px;
+    font-size: 21px;
+}
+
+.btn_showMore:active {
+    box-shadow: 4px 4px 12px inset #000;
+}
+
+.userName{
+    margin-bottom: 120px;
+}
+
+.userLocation{
+    margin-bottom: 120px;
+}

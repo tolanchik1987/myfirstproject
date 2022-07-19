@@ -1,33 +1,44 @@
+import { useState } from "react";
+
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const BTN_INCREMENT = "BTN-INCREMENT";
 
 const initialState = {
-    postData: [
-       { id: 1, message: "How i You?", likeCount: 15 },
-       { id: 2, message: "Whot is your name?", likeCount: 35 },
-    ],
-    id: 0,
-    newPostText: "Enter message",
-    newLikeCount: 0,
- }
+   postData: [
+      { id: 1, message: "How i You?", likeCount: 15 },
+      { id: 2, message: "Whot is your name?", likeCount: 35 },
+   ],
+   id: 2,
+   newPostText: "Enter message",
+   newLikeCount: 0,
+};
 
 function profileReducer(state = initialState, action) {
+
    switch (action.type) {
       case ADD_POST:
          const newPost = {
-            id: state.id++,
+            id: state.id+=1,
             message: state.newPostText,
             likeCount: state.newLikeCount,
          };
-         state.postData.push(newPost);
-         return state;
+         return {
+            ...state,
+            postData: [...state.postData, newPost],
+            newPostText: '',
+         };
       case UPDATE_NEW_POST_TEXT:
-         state.newPostText = action.newText;
-         return state;
+         return {
+            ...state,
+            newPostText: action.newText,
+         };
       case BTN_INCREMENT:
+         return {
+            ...state,
+            newLikeCount: state.newLikeCount+=1,
+         };
          // this._state.profilePage.newLikeCount=+1;
-         return state;
       default:
          return state;
    }

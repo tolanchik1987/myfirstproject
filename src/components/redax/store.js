@@ -81,5 +81,12 @@ export const updateNewMessageText = (text) => {
    };
 };
 
-export default store;
+export const btnIncrement = () => {
+   return {
+      type: "BTN-INCREMENT",
+   };
+}
 window.store = store;
+
+export default store;
+
