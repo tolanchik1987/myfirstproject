@@ -3,8 +3,7 @@ import { NavLink } from "react-router-dom";
 import classes from "./Navbar.module.css";
 import Sidebar from "./Sidebar/Sidebar";
 
-class Navbar extends React.Component {
-   render() {
+const Navbar= (props) =>  {
       return (
          <div className={classes.nav}>
             <nav>
@@ -86,7 +85,6 @@ class Navbar extends React.Component {
             </div>
          </div>
       );
-   }
 }
 
 export default Navbar;

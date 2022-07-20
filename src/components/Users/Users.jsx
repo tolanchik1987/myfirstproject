@@ -19,8 +19,8 @@ class Users extends React.Component {
             `https://social-network.samuraijs.com/api/1.0/users?page=${pageNamber}&count=${this.props.pageSize}`
          )
          .then((respons) => {
-            this.props.setUsers(respons.data.items)
-            this.props.setTotalUserCount(respons.data.totalCount)
+            this.props.setUsers(respons.data.items);
+            this.props.setTotalUserCount(respons.data.totalCount);
          });
    };
 
@@ -35,9 +35,9 @@ class Users extends React.Component {
       }
 
       let curP = this.props.curentPage;
-      let curPF = ((curP - 5) < 0) ?  0  : curP - 5 ;
-      let curPL = curP + 5;
-      let slicedPages = pages.slice( curPF, curPL)
+      let curPF = curP - 10 < 0 ? 0 : curP - 10;
+      let curPL = curP + 10;
+      let slicedPages = pages.slice(curPF, curPL);
 
       return (
          <div className={classes.conteiner}>
@@ -66,7 +66,8 @@ class Users extends React.Component {
                <div key={user.id} className={classes.conteiner_users}>
                   <div className={classes.users}>
                      {user.name}
-                     <img Alt=""
+                     <img
+                        Alt=""
                         className={classes.img}
                         src={
                            user.photos.small != null
