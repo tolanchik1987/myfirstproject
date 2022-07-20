@@ -20,7 +20,7 @@ const Dialogs = (props) => {
    };
 
    const clearMessage = () => {
-      if (newMessageElement.current.value == "Enter message") {
+      if (newMessageElement.current.value === "Enter message") {
          newMessageElement.current.value = "";
       }
    };

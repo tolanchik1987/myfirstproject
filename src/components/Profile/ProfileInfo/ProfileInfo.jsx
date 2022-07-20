@@ -5,7 +5,7 @@ class ProfileInfo extends React.Component {
    render() {
       return (
          <div>
-            <img
+            <img Alt=""
                className={classes.img_1}
                src="https://www.utu.fi/sites/default/files/styles/hero_xl/public/media/drupal/matt-hardy-6ArTTluciuA-unsplash.jpg?itok=YyCLXXb9"
             />

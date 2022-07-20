@@ -21,8 +21,6 @@ class Dialogs extends React.Component {
       this.props.addMessageCreator();
    };
 
-   newMessageElement = () => {newMessageElement = useRef()};
-
    clearMessage() {
       if (this.newMessageElement.current.value == "Enter message") {
          this.newMessageElement.current.value = "";
@@ -34,6 +32,7 @@ class Dialogs extends React.Component {
       this.newMessageElement.current.value = "";
    };
    render() {
+      newMessageElement = useRef();
       return (
       <div className={classes.conteiner_dialogs}>
          <div className={classes.dialogs_item}>{this.dialogElements}</div>

@@ -1,37 +1,14 @@
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET-USERS";
+const SET_CURENT_PAGE = "SET-CURENT-PAGE";
+const SET_USERS_TOTAL_COUNT = "SET-USERS-TOTAL-COUNT"
 
 const followedState = {
-   users:[
-      
-   ]
-   // users: [[
-   //    {
-   //       id: 1,
-   //       fotoUrl: "https://www.fortespro.ru/storage/avatars/no-image.png",
-   //       followed: false,
-   //       status: "I am a boss",
-   //       fullName: "Dmitry",
-   //       location: { country: "Russia", city: "Moscow" },
-   //    },
-   //    {
-   //       id: 2,
-   //       fotoUrl: "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
-   //       followed: true,
-   //       status: "I am like futbool",
-   //       fullName: "Sasha",
-   //       location: { country: "Ukrein", city: "Kiev" },
-   //    },
-   //    {
-   //       id: 3,
-   //       fotoUrl: "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745",
-   //       followed: false,
-   //       status: "I am like pc game",
-   //       fullName: "Nastya",
-   //       location: { country: "Belarus", city: "Minsk" },
-   //    },
-   // ]],
+   users: [],
+   pageSize: 5,
+   totalUsersCount: 100,
+   curentPage: 1,
 };
 
 function usersReducer(state = followedState, action) {
@@ -57,7 +34,11 @@ function usersReducer(state = followedState, action) {
             }),
          };
       case SET_USERS:
-         return { ...state, users: [...state.users, ...action.users] };
+         return { ...state, users: action.users };
+      case SET_CURENT_PAGE:
+         return { ...state, curentPage: action.curentPage };
+      case SET_USERS_TOTAL_COUNT:
+         return {...state, totalUsersCount: action.totalCount}
       default:
          return state;
    }
@@ -82,5 +63,20 @@ export const setUsersAC = (users) => {
       users,
    };
 };
+
+export const setCurentPageAC = (curentPage) => {
+   return {
+      type: "SET-CURENT-PAGE",
+      curentPage,
+   };
+};
+
+export const setUsersTotalCountAC = (totalCount) => {
+  return {
+   type: "SET-USERS-TOTAL-COUNT",
+   totalCount
+   }
+}
+
 
 export default usersReducer;

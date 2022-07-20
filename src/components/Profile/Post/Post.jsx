@@ -8,7 +8,7 @@ class Post extends React.Component {
    render() {
       return (
          <div className={classes.item}>
-            <img src="https://publicdomainvectors.org/tn_img/Male-Avatar-2.webp" />
+            <img Alt="" src="https://publicdomainvectors.org/tn_img/Male-Avatar-2.webp" />
             {this.props.message}
             <div>
                <button
@@ -16,7 +16,7 @@ class Post extends React.Component {
                      this.btnIncrement
                   } /*onClick={ props.dispatch({type: 'BTN-INCREMENT'})}*/
                >
-                  <img src="https://pngimg.com/uploads/like/like_PNG14.png" />
+                  <img Alt="" src="https://pngimg.com/uploads/like/like_PNG14.png" />
                   Like
                </button>
                <p>Количество лайков: {this.props.newLikeCount}.</p>

@@ -80,3 +80,24 @@
 .userLocation{
     margin-bottom: 120px;
 }
+
+.conteinerUserPages{
+    margin: 10px;
+    text-align: center;
+}
+
+.selectedPage{
+    font-size: larger;
+    font-weight: bolder;
+    color:rgb(19, 17, 17);
+    text-decoration: underline;
+}
+
+span {
+    padding: 0 5px 0 0;
+    cursor: pointer;
+}
+
+p {
+    margin: 0 0 10px 0;
+}

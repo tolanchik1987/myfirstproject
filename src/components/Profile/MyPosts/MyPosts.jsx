@@ -19,7 +19,7 @@ const MyPosts = (props) => {
    };
 
    const clearMessage = () => {
-      if (newPostElement.current.value == "Enter message") {
+      if (newPostElement.current.value === "Enter message") {
          newPostElement.current.value = "";
       }
    };
@@ -34,7 +34,7 @@ const MyPosts = (props) => {
       <div className={classes.posts}>
          <div className={classes.item}>
             <div className={classes.item_ava}>
-               <img src="https://vraki.net/sites/default/files/inline/images/2_3.png" />
+               <img alt="" src="https://vraki.net/sites/default/files/inline/images/2_3.png" />
                <div className={classes.userName}>Anatoliy</div>
             </div>
          </div>
