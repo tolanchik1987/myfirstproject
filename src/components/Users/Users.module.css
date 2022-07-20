@@ -46,7 +46,6 @@
     background: rgba(255, 255, 255, 0.50);
     border: 2px solid grey;
     border-radius: 20px;
-    /* text-align: center; */
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -63,6 +62,15 @@
 
 .btn_showMore:active {
     box-shadow: 4px 4px 12px inset #000;
+}
+
+.btn_getUsers {
+    margin: 10px;
+    border: 2px solid rgb(172, 172, 172);
+    border-radius: 5px;
+    height: 40px;
+    width: 100px;
+    font-size: 18px;
 }
 
 .userName{

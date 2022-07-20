@@ -16,7 +16,4 @@ root.render(
    </React.StrictMode>
 );
 
-// rerenderEntireTree();
-
-
 reportWebVitals();

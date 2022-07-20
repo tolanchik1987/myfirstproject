@@ -1,19 +1,22 @@
+import React from "react";
 import classes from "./Sidebar.module.css";
 
-const Sidebar = (props) => {
-    return(
-        <div className={classes.conteiner_sideBar}>
+class Sidebar extends React.Component {
+   render() {
+      return (
+         <div className={classes.conteiner_sideBar}>
             <h2>Friends</h2>
             <div className={classes.img_ava}>
-                <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png"/>
-                <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png"/>
-                <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png"/>
-                <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png"/>
-                <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png"/>
-                <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png"/>
+               <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" />
+               <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" />
+               <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" />
+               <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" />
+               <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" />
+               <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" />
             </div>
-        </div>
-    )
-};
+         </div>
+      );
+   }
+}
 
 export default Sidebar;

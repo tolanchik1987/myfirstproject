@@ -9,7 +9,7 @@ import Users from "./Users";
 
 const mapStateToProps = (state) => {
    return {
-      usersPage: state.usersPage.users,
+      users: state.usersPage.users,
    };
 };
 
