@@ -101,3 +101,8 @@ span {
 p {
     margin: 0 0 10px 0;
 }
+
+.img_loading {
+    width: 100px;
+    margin: 200px 0 0 400px;
+}

@@ -8,7 +8,7 @@ const Post = (props) => {
    return (
       <div className={classes.item}>
          <img
-            Alt=""
+            alt=""
             src="https://publicdomainvectors.org/tn_img/Male-Avatar-2.webp"
          />
          {props.message}
@@ -19,7 +19,7 @@ const Post = (props) => {
                } /*onClick={ props.dispatch({type: 'BTN-INCREMENT'})}*/
             >
                <img
-                  Alt=""
+                  alt=""
                   src="https://pngimg.com/uploads/like/like_PNG14.png"
                />
                Like
