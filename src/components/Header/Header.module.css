@@ -10,3 +10,15 @@
   background: rgba(38, 81, 154, 0.557);
   border-radius: 50%;
 }
+
+header{
+  display: flex;
+  align-items: center;
+}
+
+h1{
+  margin-left: 20px;
+  font-size: 38px;
+  color: rgb(255, 255, 255);
+  text-shadow: 4px 4px 4px #000;
+}

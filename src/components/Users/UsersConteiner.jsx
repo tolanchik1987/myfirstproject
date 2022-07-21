@@ -1,16 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-   FollowAC,
-   unFollowAC,
-   setUsersAC,
-   setCurentPageAC,
-   setUsersTotalCountAC,
-   toggleIsFetchingAC,
+   Follow,
+   unFollow,
+   setUsers,
+   setCurentPage,
+   setUsersTotalCount,
+   toggleIsFetching,
 } from "../redax/users-reducer";
 import * as axios from "axios";
 import Users from "./Users";
-import classes from "./Users.module.css";
+import Preloader from "../common/preloader/Preloader";
 
 class UsersAPIComponent extends React.Component {
    componentDidMount() {
@@ -42,11 +42,7 @@ class UsersAPIComponent extends React.Component {
       return (
          <>
             {this.props.isFetching ? (
-               <img
-                  className={classes.img_loading}
-                  src="https://v.fastcdn.co/u/430e104e/57579327-0-Loaders-3.svg"
-                  alt=""
-               />
+               <Preloader />
             ) : (
                <Users
                   totalUsersCount={this.props.totalUsersCount}
@@ -73,32 +69,13 @@ const mapStateToProps = (state) => {
    };
 };
 
-const mapDispatchToProps = (dispatch) => {
-   return {
-      follow: (userId) => {
-         dispatch(FollowAC(userId));
-      },
-      unFollow: (userId) => {
-         dispatch(unFollowAC(userId));
-      },
-      setUsers: (users) => {
-         dispatch(setUsersAC(users));
-      },
-      setCurentPage: (pageNumber) => {
-         dispatch(setCurentPageAC(pageNumber));
-      },
-      setTotalUserCount: (totalCount) => {
-         dispatch(setUsersTotalCountAC(totalCount));
-      },
-      toggleIsFetching: (isFetching) => {
-         dispatch(toggleIsFetchingAC(isFetching));
-      },
-   };
-};
-
-const UsersConteiner = connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(UsersAPIComponent);
+const UsersConteiner = connect(mapStateToProps, {
+   Follow,
+   unFollow,
+   setUsers,
+   setCurentPage,
+   setUsersTotalCount,
+   toggleIsFetching,
+})(UsersAPIComponent);
 
 export default UsersConteiner;

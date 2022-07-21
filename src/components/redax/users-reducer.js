@@ -47,42 +47,42 @@ function usersReducer(state = followedState, action) {
          return state;
    }
 }
-export const FollowAC = (userId) => {
+export const Follow = (userId) => {
    return {
       type: "FOLLOW",
       userId,
    };
 };
 
-export const unFollowAC = (userId) => {
+export const unFollow = (userId) => {
    return {
       type: "UNFOLLOW",
       userId,
    };
 };
 
-export const setUsersAC = (users) => {
+export const setUsers = (users) => {
    return {
       type: "SET-USERS",
       users,
    };
 };
 
-export const setCurentPageAC = (curentPage) => {
+export const setCurentPage = (curentPage) => {
    return {
       type: "SET-CURENT-PAGE",
       curentPage,
    };
 };
 
-export const setUsersTotalCountAC = (totalCount) => {
+export const setUsersTotalCount = (totalCount) => {
    return {
       type: "SET-USERS-TOTAL-COUNT",
       totalCount,
    };
 };
 
-export const toggleIsFetchingAC = (isFetching) => {
+export const toggleIsFetching = (isFetching) => {
   return {
       type: "TOGGLE-IS-FETCHING",
       isFetching
