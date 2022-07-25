@@ -3,6 +3,7 @@
   grid-area: nav;
   background: rgba(38, 81, 154, 0.555);
   border-radius: 10px;
+  border: 2px solid black;
 }
 .nav nav div {
   margin: 0 0 15px 0;

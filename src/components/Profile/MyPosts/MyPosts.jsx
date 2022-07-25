@@ -32,14 +32,9 @@ const MyPosts = (props) => {
 
    return (
       <div className={classes.posts}>
+         
          <div className={classes.item}>
-            <div className={classes.item_ava}>
-               <img alt="" src="https://vraki.net/sites/default/files/inline/images/2_3.png" />
-               <div className={classes.userName}>Anatoliy</div>
-            </div>
-         </div>
-         <div className={classes.item}>
-            <h2>My post</h2>
+            <h2>Опубликавать пост:</h2>
             <textarea
                onChange={onChangePost}
                onClick={clearMessage}
@@ -49,10 +44,10 @@ const MyPosts = (props) => {
                value={props.newPostText}
             />
             <button onClick={onAddPost} type="button">
-               Add post
+               Опубликовать
             </button>
          </div>
-         <div className={classes.item}>newpost</div>
+         <div className={classes.item_new_post}>Новые посты:</div>
          {postItem}
       </div>
    );

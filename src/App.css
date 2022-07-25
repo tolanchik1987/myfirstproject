@@ -15,4 +15,5 @@
 	grid-area: content;
 	background: rgba(38, 81, 154, 0.572);
 	border-radius: 10px;
+	border: 2px solid black;
 }

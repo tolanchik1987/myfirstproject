@@ -34,7 +34,7 @@ class UsersAPIComponent extends React.Component {
          .then((respons) => {
             this.props.toggleIsFetching(false);
             this.props.setUsers(respons.data.items);
-            this.props.setTotalUserCount(respons.data.totalCount);
+            this.props.setUsersTotalCount(respons.data.totalCount);
          });
    };
 

@@ -2,6 +2,8 @@
     grid-area: header;
     background: rgba(38, 81, 154, 0.559);
     border-radius:0 0 20px 20px;
+    border: 2px solid black;
+    border-top: none;
   }
 .header img {
   height: 50px;
@@ -21,4 +23,15 @@ h1{
   font-size: 38px;
   color: rgb(255, 255, 255);
   text-shadow: 4px 4px 4px #000;
+}
+
+.loginBlock {
+  font-size: 23px;
+  padding-right: 120px;
+  flex-grow: 1;
+  text-align: right;
+}
+
+.loginBlock a {
+  color: white;
 }

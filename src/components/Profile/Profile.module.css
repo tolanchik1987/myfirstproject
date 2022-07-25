@@ -1,12 +1,3 @@
 .content div {
   margin: 10px;
 }
-
-.content .img_2 {
-  width: 150px;
-  border-radius: 50%;
-  transition: all 0.8s ease 0s;
-}
-.img_2:hover {
-  transform: scale(1.08, 1.08);
-}

@@ -1,6 +1,7 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const BTN_INCREMENT = "BTN-INCREMENT";
+const SET_USER_PROFILE = "SET_USER_PROFILE"
 
 const initialState = {
    postData: [
@@ -10,6 +11,7 @@ const initialState = {
    id: 2,
    newPostText: "Enter message",
    newLikeCount: 0,
+   profile: null,
 };
 
 function profileReducer(state = initialState, action) {
@@ -36,6 +38,10 @@ function profileReducer(state = initialState, action) {
             ...state,
             newLikeCount: state.newLikeCount+=1,
          };
+      case SET_USER_PROFILE:
+         return {
+            ...state, profile: action.profile,
+         }
          // this._state.profilePage.newLikeCount=+1;
       default:
          return state;
@@ -60,5 +66,12 @@ export const btnIncrement = () => {
       type: "BTN-INCREMENT",
    };
 };
+
+export const setUsersProfile = (profile) => {
+   return {
+      type: "SET_USER_PROFILE",
+      profile
+   }
+}
 
 export default profileReducer;
