@@ -22,7 +22,7 @@ class ProfileConteiner extends Component {
    componentDidMount() {
       let profileId = this.props.router.params.profileId;
       if (!profileId) {
-         profileId = 2;
+         profileId = 25067;
       }
       axios
          .get(

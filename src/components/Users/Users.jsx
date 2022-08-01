@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./Users.module.css";
 import photoUser from "../../assets/img/user.png";
 import { NavLink } from "react-router-dom";
+import { usersAPI } from "../../api/api";
 
 const Users = (props) => {
    const pegesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -39,61 +40,75 @@ const Users = (props) => {
                })}
             </div>
          </div>
-         {props.users.map((user) => (
-            <div key={user.id} className={classes.conteiner_users}>
-               <div className={classes.users}>
-                  {user.name}
-                  <div>
-                     <NavLink to={"/Profile/" + user.id}>
-                        <img
-                           alt=""
-                           className={classes.img}
-                           src={
-                              user.photos.small != null
-                                 ? user.photos.small
-                                 : photoUser
-                           }
-                        />
-                     </NavLink>
+         {props.users.map((user) => {
+            return (
+               <div key={user.id} className={classes.conteiner_users}>
+                  <div className={classes.users}>
+                     {user.name}
+                     <div>
+                        <NavLink to={"/Profile/" + user.id}>
+                           <img
+                              alt=""
+                              className={classes.img}
+                              src={
+                                 user.photos.small != null
+                                    ? user.photos.small
+                                    : photoUser
+                              }
+                           />
+                        </NavLink>
+                     </div>
+                     <div>
+                        {user.followed ? (
+                           <button
+                              className={classes.btn_followed}
+                              onClick={() => {
+                                 usersAPI.FollowedPost(user.id).then((data) => {
+                                       if (data.resultCode === 1) {
+                                          props.unFollow(user.id);
+                                       }
+                                    });
+                              }}
+                           >
+                              Unsubscribe
+                           </button>
+                        ) : (
+                           <button
+                              className={classes.btn_followed}
+                              onClick={() => {
+                                 usersAPI.FollowedDel(user.id).then((data) => {
+                                       if (data.resultCode === 1) {
+                                          props.Follow(user.id);
+                                       }
+                                    });
+                              }}
+                           >
+                              Subscribe
+                           </button>
+                        )}
+                     </div>
                   </div>
-                  <div>
-                     {user.followed ? (
-                        <button
-                           className={classes.btn_followed}
-                           onClick={() => props.unFollow(user.id)}
-                        >
-                           Unsubscribe
-                        </button>
-                     ) : (
-                        <button
-                           className={classes.btn_followed}
-                           onClick={() => props.follow(user.id)}
-                        >
-                           Subscribe
-                        </button>
-                     )}
+                  <div className={classes.userInfo}>
+                     <div>
+                        <div className={classes.userName}>{user.name}</div>
+                        <div className={classes.userStatus}>
+                           {user.status != null
+                              ? user.status
+                              : "status not found!"}
+                        </div>
+                     </div>
+                     <div>
+                        <div className={classes.userLocation}>
+                           {"user.location.country"}
+                        </div>
+                        <div className={classes.userCity}>
+                           {"user.location.city"}
+                        </div>
+                     </div>
                   </div>
                </div>
-               <div className={classes.userInfo}>
-                  <div>
-                     <div className={classes.userName}>{user.name}</div>
-                     <div className={classes.userStatus}>
-                        {user.status != null
-                           ? user.status
-                           : "status not found!"}
-                     </div>
-                  </div>
-                  <div>
-                     <div className={classes.userLocation}>
-                        {"user.location.country"}
-                     </div>
-                     <div className={classes.userCity}>
-                        {"user.location.city"}
-                     </div>
-                  </div>
-               </div>
-            </div>
-         ))}
+            );
+         })}
          <button className={classes.btn_showMore}>Show more...</button>
       </div>
    );
