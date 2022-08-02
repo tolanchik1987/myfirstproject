@@ -5,30 +5,30 @@
     color: rgb(250, 250, 250);
 }
 
-.conteiner_users{
-    margin:50px 0 0 0;
+.conteiner_users {
+    margin: 50px 0 0 0;
     display: flex;
     text-shadow: none;
 }
 
-.users{
+.users {
     margin: 10px;
     padding: 10px;
     width: 250px;
-    background: rgba(255, 255, 255, 0.50);
+    background: rgba(255, 255, 255, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 2px solid grey;
-    border-radius: 20px; 
+    border-radius: 20px;
 }
 
-.img{
+.img {
     width: 100px;
     margin: 10px 0 10px 0;
 }
 
-.btn_followed{
+.btn_followed {
     font-size: 20px;
     color: red;
     margin: 0 0 10px 0;
@@ -36,16 +36,16 @@
     border-radius: 5px;
     width: 120px;
     height: 40px;
-} 
+}
 
-.btn_followed:active{
+.btn_followed:active {
     box-shadow: 4px 4px 12px inset #000;
 }
 
-.userInfo{
+.userInfo {
     margin: 10px;
     width: 550px;
-    background: rgba(255, 255, 255, 0.50);
+    background: rgba(255, 255, 255, 0.5);
     border: 2px solid grey;
     border-radius: 20px;
     display: flex;
@@ -53,7 +53,7 @@
     padding: 20px;
 }
 
-.btn_showMore{
+.btn_showMore {
     margin: 50px 0 0 400px;
     border: 2px solid rgb(172, 172, 172);
     border-radius: 5px;
@@ -75,23 +75,23 @@
     font-size: 18px;
 }
 
-.userName{
+.userName {
     margin-bottom: 120px;
 }
 
-.userLocation{
+.userLocation {
     margin-bottom: 120px;
 }
 
-.conteinerUserPages{
+.conteinerUserPages {
     margin: 10px;
     text-align: center;
 }
 
-.selectedPage{
+.selectedPage {
     font-size: larger;
     font-weight: 500;
-    color:rgb(19, 17, 17);
+    color: rgb(19, 17, 17);
     /* text-decoration: underline; */
 }
 

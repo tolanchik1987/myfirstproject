@@ -7,17 +7,16 @@ import {
    setCurentPage,
    setUsersTotalCount,
    toggleIsFetching,
-} from "../redax/users-reducer";import Users from "./Users";
+   toggleIsFollowingProgress,
+   getUsersThunkCreator,
+} from "../redax/users-reducer";
+import Users from "./Users";
 import Preloader from "../common/preloader/Preloader";
 import { usersAPI } from "../../api/api";
 
 class UsersAPIComponent extends React.Component {
    componentDidMount() {
-      this.props.toggleIsFetching(true);
-      usersAPI.getUsers(this.props.curentPage, this.props.pageSize).then((data) => {
-         this.props.setUsers(data.items);
-         this.props.toggleIsFetching(false);
-      });
+      this.props.getUsersThunkCreator(this.props.curentPage, this.props.pageSize)
    }
    onPageChanged = (pageNamber) => {
       this.props.setCurentPage(pageNamber);
@@ -43,6 +42,8 @@ class UsersAPIComponent extends React.Component {
                   users={this.props.users}
                   unFollow={this.props.unFollow}
                   Follow={this.props.Follow}
+                  toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
+                  followingInProgress={this.props.followingInProgress}
                />
             )}
          </>
@@ -57,6 +58,7 @@ const mapStateToProps = (state) => {
       totalUsersCount: state.usersPage.totalUsersCount,
       curentPage: state.usersPage.curentPage,
       isFetching: state.usersPage.isFetching,
+      followingInProgress: state.usersPage.followingInProgress,
    };
 };
 
@@ -67,6 +69,8 @@ const UsersConteiner = connect(mapStateToProps, {
    setCurentPage,
    setUsersTotalCount,
    toggleIsFetching,
+   toggleIsFollowingProgress,
+   getUsersThunkCreator,
 })(UsersAPIComponent);
 
 export default UsersConteiner;

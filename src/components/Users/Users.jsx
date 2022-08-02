@@ -31,7 +31,7 @@ const Users = (props) => {
                            props.onPageChanged(p);
                         }}
                         className={
-                           props.curentPage === p && classes.selectedPage
+                           props.curentPage === p ? classes.selectedPage : classes.p
                         }
                      >
                         {p}
@@ -62,12 +62,19 @@ const Users = (props) => {
                         {user.followed ? (
                            <button
                               className={classes.btn_followed}
+                              //    disabled={props.followingInProgress.includes(user.id)
+                              // }
                               onClick={() => {
+                                 props.toggleIsFollowingProgress(true, user.id);
                                  usersAPI.FollowedPost(user.id).then((data) => {
-                                       if (data.resultCode === 1) {
-                                          props.unFollow(user.id);
-                                       }
-                                    });
+                                    if (data.resultCode === 1) {
+                                       props.unFollow(user.id);
+                                       props.toggleIsFollowingProgress(
+                                          false,
+                                          user.id
+                                       );
+                                    }
+                                 });
                               }}
                            >
                               Unsubscribe
@@ -75,12 +82,19 @@ const Users = (props) => {
                         ) : (
                            <button
                               className={classes.btn_followed}
+                              //    disabled={props.followingInProgress.includes(user.id)
+                              // }
                               onClick={() => {
+                                 props.toggleIsFollowingProgress(true, user.id);
                                  usersAPI.FollowedDel(user.id).then((data) => {
-                                       if (data.resultCode === 1) {
-                                          props.Follow(user.id);
-                                       }
-                                    });
+                                    if (data.resultCode === 1) {
+                                       props.Follow(user.id);
+                                       props.toggleIsFollowingProgress(
+                                          false,
+                                          user.id
+                                       );
+                                    }
+                                 });
                               }}
                            >
                               Subscribe

@@ -1,9 +1,12 @@
+import { usersAPI } from "../../api/api";
+
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET-USERS";
 const SET_CURENT_PAGE = "SET-CURENT-PAGE";
 const SET_USERS_TOTAL_COUNT = "SET-USERS-TOTAL-COUNT";
-const TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING"
+const TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING";
+const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 
 const followedState = {
    users: [],
@@ -11,6 +14,7 @@ const followedState = {
    totalUsersCount: 100,
    curentPage: 1,
    isFetching: false,
+   followingInProgress: [],
 };
 
 function usersReducer(state = followedState, action) {
@@ -42,8 +46,15 @@ function usersReducer(state = followedState, action) {
       case SET_USERS_TOTAL_COUNT:
          return { ...state, totalUsersCount: action.totalCount };
       case TOGGLE_IS_FETCHING:
-         return {...state, isFetching: action.isFetching}
-         default:
+         return { ...state, isFetching: action.isFetching };
+      case TOGGLE_IS_FOLLOWING_PROGRESS:
+         return {
+            ...state,
+            followingInProgress: action.isFetching
+               ? [...state.followingInProgress, action.userId]
+               : state.followingInProgress.filter((id) => id !== action.userId),
+         };
+      default:
          return state;
    }
 }
@@ -83,11 +94,27 @@ export const setUsersTotalCount = (totalCount) => {
 };
 
 export const toggleIsFetching = (isFetching) => {
-  return {
+   return {
       type: "TOGGLE-IS-FETCHING",
-      isFetching
-   }
-}
+      isFetching,
+   };
+};
+export const toggleIsFollowingProgress = (isFetching, userId) => {
+   return {
+      type: "TOGGLE_IS_FOLLOWING_PROGRESS",
+      isFetching,
+      userId,
+   };
+};
 
+export const getUsersThunkCreator = (curentPage, pageSize) => {
+   return (dispatch) => {
+      dispatch(toggleIsFetching(true));
+      usersAPI.getUsers(curentPage, pageSize).then((data) => {
+         dispatch(setUsers(data.items));
+         dispatch(toggleIsFetching(false));
+      });
+   };
+};
 
 export default usersReducer;
