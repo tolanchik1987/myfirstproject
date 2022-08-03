@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./Users.module.css";
 import photoUser from "../../assets/img/user.png";
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../api/api";
 
 const Users = (props) => {
    const pegesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -31,7 +30,9 @@ const Users = (props) => {
                            props.onPageChanged(p);
                         }}
                         className={
-                           props.curentPage === p ? classes.selectedPage : classes.p
+                           props.curentPage === p
+                              ? classes.selectedPage
+                              : classes.p
                         }
                      >
                         {p}
@@ -59,47 +60,25 @@ const Users = (props) => {
                         </NavLink>
                      </div>
                      <div>
-                        {user.followed ? (
-                           <button
+                        {user.followed ? <button
                               className={classes.btn_followed}
-                              //    disabled={props.followingInProgress.includes(user.id)
-                              // }
+                              disabled={props.followingInProgress.includes(user.id)}
                               onClick={() => {
-                                 props.toggleIsFollowingProgress(true, user.id);
-                                 usersAPI.FollowedPost(user.id).then((data) => {
-                                    if (data.resultCode === 1) {
-                                       props.unFollow(user.id);
-                                       props.toggleIsFollowingProgress(
-                                          false,
-                                          user.id
-                                       );
-                                    }
-                                 });
+                                 props.unFollow(user.id);
                               }}
                            >
                               Unsubscribe
                            </button>
-                        ) : (
-                           <button
+                         : <button
                               className={classes.btn_followed}
-                              //    disabled={props.followingInProgress.includes(user.id)
-                              // }
+                              disabled={props.followingInProgress.includes(user.id)}
                               onClick={() => {
-                                 props.toggleIsFollowingProgress(true, user.id);
-                                 usersAPI.FollowedDel(user.id).then((data) => {
-                                    if (data.resultCode === 1) {
-                                       props.Follow(user.id);
-                                       props.toggleIsFollowingProgress(
-                                          false,
-                                          user.id
-                                       );
-                                    }
-                                 });
+                                 props.follow(user.id);
                               }}
                            >
                               Subscribe
                            </button>
-                        )}
+                        }
                      </div>
                   </div>
                   <div className={classes.userInfo}>

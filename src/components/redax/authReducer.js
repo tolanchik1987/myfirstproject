@@ -1,3 +1,5 @@
+import { usersAPI } from "../../api/api";
+
 const SET_USER_DATA = "SET_USER_DATA";
 
 const initialState = {
@@ -21,6 +23,17 @@ export const setAuthUserData = (userId, email, login) => {
    return {
       type: "SET_USER_DATA",
       data: { userId, email, login },
+   };
+};
+
+export const setAuth = () => {
+   return (dispatch) => {
+      usersAPI.setAuthUsers().then((data) => {
+         if (data.resultCode === 0) {
+            const { id, email, login } = data.data;
+            dispatch(setAuthUserData(id, email, login));
+         }
+      });
    };
 };
 

@@ -1,3 +1,5 @@
+import { usersAPI } from "../../api/api";
+
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const BTN_INCREMENT = "BTN-INCREMENT";
@@ -12,6 +14,7 @@ const initialState = {
    newPostText: "Enter message",
    newLikeCount: 0,
    profile: null,
+   // isAuth:false,
 };
 
 function profileReducer(state = initialState, action) {
@@ -71,6 +74,19 @@ export const setUsersProfile = (profile) => {
    return {
       type: "SET_USER_PROFILE",
       profile
+   }
+}
+
+export const getUsersProfile = (router) => {
+   return (dispatch) => {
+      let profileId = router;
+      if (!profileId) {
+         profileId = 25067;
+      }
+      usersAPI.setUsers(profileId)
+         .then((data) => {
+            dispatch(setUsersProfile(data));
+         });
    }
 }
 

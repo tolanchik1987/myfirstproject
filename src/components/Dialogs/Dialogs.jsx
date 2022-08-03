@@ -2,16 +2,17 @@ import { useRef } from "react";
 import DialogItem from "./DialogItem/DialogItem";
 import classes from "./Dialogs.module.css";
 import Message from "./Message/Message";
+// import { Navigate } from "react-router-dom";
+// import DialogsConteiner from "./DialogsConteiner";
 
 const Dialogs = (props) => {
-
    const dialogElements = props.dialogsPage.dialogsData.map((dialog, index) => (
       <DialogItem key={index} name={dialog.name} id={dialog.id} />
    ));
 
-   const messagesElements = props.dialogsPage.messageData.map((message, index) => (
-      <Message key={index} message={message.message} />
-   ));
+   const messagesElements = props.dialogsPage.messageData.map(
+      (message, index) => <Message key={index} message={message.message} />
+   );
 
    const newMessageElement = useRef();
 
@@ -26,9 +27,13 @@ const Dialogs = (props) => {
    };
 
    const onChangeMessage = () => {
-      props.updateNewMessageText(newMessageElement.current.value)
+      props.updateNewMessageText(newMessageElement.current.value);
       newMessageElement.current.value = "";
    };
+
+   // if (!props.isAuth) {
+   //    return <Navigate to={"/login"} />;
+   // }
 
    return (
       <div className={classes.conteiner_dialogs}>

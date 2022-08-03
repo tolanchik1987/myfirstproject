@@ -1,11 +1,13 @@
-import axios from "axios";
-import React, { Component } from "react";
+
+import React from "react";
 import { connect } from "react-redux";
 import Profile from "./Profile";
 import classes from "./Profile.module.css";
-import { setUsersProfile } from "../redax/profile-reducer";
+import { getUsersProfile } from "../redax/profile-reducer";
 import { toggleIsFetching } from "../redax/users-reducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import AuthRedirectHOC from "../../hoc/AuthRedirect";
+
 
 function withRouter(Component) {
    function ComponentWithRouterProp(props) {
@@ -18,22 +20,14 @@ function withRouter(Component) {
    return ComponentWithRouterProp;
 }
 
-class ProfileConteiner extends Component {
+class ProfileConteiner extends React.Component {
    componentDidMount() {
-      let profileId = this.props.router.params.profileId;
-      if (!profileId) {
-         profileId = 25067;
-      }
-      axios
-         .get(
-            `https://social-network.samuraijs.com/api/1.0/profile/${profileId}`
-         )
-         .then((respons) => {
-            this.props.setUsersProfile(respons.data);
-         });
+      this.props.getUsersProfile(this.props.router.params.profileId)
    }
-
+   
    render() {
+   
+      // if (!this.props.isAuth) {return <Navigate to={"/login"}/>}
       return (
          <div className={classes.content}>
             <Profile {...this.props} profile={this.props.profile} />
@@ -44,10 +38,10 @@ class ProfileConteiner extends Component {
 
 const mapStateToProps = (state) => ({
    profile: state.profilePage.profile,
+   isAuth: state.authUser.isAuth,
 });
+const AuthRedirectComponent=AuthRedirectHOC(ProfileConteiner)
 
-// const WithUrlDataConteinerComponent = withRouter(ProfileConteiner);
-
-export default connect(mapStateToProps, { setUsersProfile, toggleIsFetching  })(
-   withRouter(ProfileConteiner)
+export default connect(mapStateToProps, { toggleIsFetching ,getUsersProfile })(
+   withRouter(AuthRedirectComponent)
 );

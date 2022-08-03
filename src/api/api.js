@@ -19,21 +19,40 @@ export const usersAPI = {
       });
 },
 
- async FollowedPost(userId) {
+ async followSuccess(userId) {
    return await instance
       .post(
-         `follow/${userId}`,
-         {}
+         `follow/${userId}`
       )
       .then((response) => {
          return response.data;
       });
 },
 
- async FollowedDel(userId) {
+ async unFollowSuccess(userId) {
    return await instance
       .delete(`follow/${userId}`)
-      .then((respons) => {
-         return respons.data;
+      .then((response) => {
+         return response.data;
       });
-}}
+},
+
+async setAuthUsers() {
+   return await instance
+   .get("auth/me")
+   .then((response) => {
+         return response.data
+   });
+},
+
+ async setUsers(profileId) {
+   return await instance
+   .get(
+      `profile/${profileId}`
+   )
+   .then((response) => {
+      return response.data
+   });
+}
+
+}
