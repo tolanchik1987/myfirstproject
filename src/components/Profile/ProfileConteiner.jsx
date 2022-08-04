@@ -1,4 +1,3 @@
-
 import React from "react";
 import { connect } from "react-redux";
 import Profile from "./Profile";
@@ -6,8 +5,8 @@ import classes from "./Profile.module.css";
 import { getUsersProfile } from "../redax/profile-reducer";
 import { toggleIsFetching } from "../redax/users-reducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import AuthRedirectHOC from "../../hoc/AuthRedirect";
-
+import withAuthRedirectHOC from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 function withRouter(Component) {
    function ComponentWithRouterProp(props) {
@@ -22,12 +21,10 @@ function withRouter(Component) {
 
 class ProfileConteiner extends React.Component {
    componentDidMount() {
-      this.props.getUsersProfile(this.props.router.params.profileId)
+      this.props.getUsersProfile(this.props.router.params.profileId);
    }
-   
+
    render() {
-   
-      // if (!this.props.isAuth) {return <Navigate to={"/login"}/>}
       return (
          <div className={classes.content}>
             <Profile {...this.props} profile={this.props.profile} />
@@ -40,8 +37,9 @@ const mapStateToProps = (state) => ({
    profile: state.profilePage.profile,
    isAuth: state.authUser.isAuth,
 });
-const AuthRedirectComponent=AuthRedirectHOC(ProfileConteiner)
 
-export default connect(mapStateToProps, { toggleIsFetching ,getUsersProfile })(
-   withRouter(AuthRedirectComponent)
-);
+export default compose(
+   connect(mapStateToProps, { toggleIsFetching, getUsersProfile }),
+   withRouter,
+   withAuthRedirectHOC
+)(ProfileConteiner);

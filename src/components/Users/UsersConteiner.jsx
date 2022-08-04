@@ -9,6 +9,8 @@ import {
 } from "../redax/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/preloader/Preloader";
+import withAuthRedirectHOC from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 class UsersAPIComponent extends React.Component {
    componentDidMount() {
@@ -48,15 +50,17 @@ const mapStateToProps = (state) => {
       curentPage: state.usersPage.curentPage,
       isFetching: state.usersPage.isFetching,
       followingInProgress: state.usersPage.followingInProgress,
+      isAuth: state.authUser.isAuth,
    };
 };
 
-const UsersConteiner = connect(mapStateToProps, {
-   follow,
-   unFollow,
-   setCurentPage,
-   toggleIsFollowingProgress,
-   getUsers,
-})(UsersAPIComponent);
-
-export default UsersConteiner;
+export default compose(
+   connect(mapStateToProps, {
+      follow,
+      unFollow,
+      setCurentPage,
+      toggleIsFollowingProgress,
+      getUsers,
+   }),
+   withAuthRedirectHOC
+)(UsersAPIComponent);

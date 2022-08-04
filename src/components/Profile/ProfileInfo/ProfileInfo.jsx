@@ -1,10 +1,11 @@
 import React from "react";
 import Preloader from "../../common/preloader/Preloader";
 import classes from "./ProfileInfo.module.css";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 const ProfileInfo = (props) => {
    if (!props.profile) {
-      return <Preloader />
+      return <Preloader />;
    }
 
    return (
@@ -16,13 +17,30 @@ const ProfileInfo = (props) => {
          />
          <div className={classes.item}>
             <div className={classes.item_ava}>
-               <img alt="" src={props.profile.photos.large ? props.profile.photos.large : "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745"} />
+               <img
+                  alt=""
+                  src={
+                     props.profile.photos.large
+                        ? props.profile.photos.large
+                        : "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745"
+                  }
+               />
                <div className={classes.userName}>{props.profile.fullName}</div>
                <div className={classes.userInfo}>
                   <div>{props.profile.aboutMe}</div>
-                  <div>{props.profile.lookingForAJob === true ? "В поисках работы: " : "Место работы: "} {props.profile.lookingForAJob === true ? props.profile.lookingForAJobDescription : "Не ищу работу"}</div>
+                  <div>
+                     {props.profile.lookingForAJob === true
+                        ? "В поисках работы: "
+                        : "Место работы: "}{" "}
+                     {props.profile.lookingForAJob === true
+                        ? props.profile.lookingForAJobDescription
+                        : "Не ищу работу"}
+                  </div>
                </div>
             </div>
+         </div>
+         <div className={classes.profileStatus}>
+            <ProfileStatus />
          </div>
       </div>
    );

@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-const AuthRedirectHOC = (Component) => {
+const withAuthRedirectHOC = (Component) => {
    class RedirectComponent extends React.Component {
       render() {
          if (!this.props.isAuth) return <Navigate to={"/login"} />;
@@ -11,4 +11,4 @@ const AuthRedirectHOC = (Component) => {
    return RedirectComponent;
 };
 
-export default AuthRedirectHOC;
+export default withAuthRedirectHOC;
