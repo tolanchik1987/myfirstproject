@@ -4,26 +4,34 @@ import classes from "./profileStatus.module.css";
 class ProfileStatus extends React.Component {
    state = {
       editMode: false,
-      value: "Enter status",
-      status: "ggggg",
+      status: this.props.status,
    };
 
-   activateEditMode() {
+   activateEditMode = () => {
       this.setState({
          editMode: true,
       });
-   }
+   };
 
-   diactivateEditMode() {
-    this.setState({
-        editMode: false,
-    })
-   }
+   diactivateEditMode = () => {
+      this.setState({
+         editMode: false,
+      });
+      this.props.upDateStatus(this.state.status);
+   };
 
-   changValue(e) {
+   changValue = (e) => {
       this.setState({
          status: e.target.value,
       });
+   };
+
+   componentDidUpdate(prevProps, prevState) {
+      if (prevProps.status !== this.props.status) {
+         this.setState({
+            status: this.props.status,
+         });
+      }
    }
 
    render() {
@@ -31,8 +39,8 @@ class ProfileStatus extends React.Component {
          <div className={classes.profileStatus}>
             {!this.state.editMode && (
                <div>
-                  <span onClick={this.activateEditMode.bind(this)}>
-                     {this.state.status}
+                  <span onClick={this.activateEditMode}>
+                     {this.props.status || "Click this for enter status"}
                   </span>
                </div>
             )}
@@ -40,10 +48,11 @@ class ProfileStatus extends React.Component {
                <div className={classes.ProfileStatusText}>
                   <input
                      type="text"
-                     value={this.state.value}
-                     onChange={this.changValue.bind(this)}
+                     placeholder="Enter status"
+                     value={this.state.status}
+                     onChange={this.changValue}
                      autoFocus={true}
-                     onBlur={this.diactivateEditMode.bind(this)}
+                     onBlur={this.diactivateEditMode}
                   />
                </div>
             )}

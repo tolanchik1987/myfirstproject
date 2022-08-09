@@ -35,9 +35,26 @@ export const usersAPI = {
       });
    },
 
-   async setUsers(profileId) {
+   // async setUsers(profileId) {
+   //    console.warn("Obsolut method. Plise ProfileAPI object")
+   //       return ProfileAPI.getProfile(profileId)
+   // },
+};
+
+export const profileAPI = {
+   async getProfile(profileId) {
       return await instance.get(`profile/${profileId}`).then((response) => {
          return response.data;
       });
    },
-};
+   async getStatus(userId) {
+      return await instance.get(`profile/status/${userId}`).then((response) => {
+         return response.data;
+      });
+   },
+   async upDateStatus(status) {
+      return await instance.put(`profile/status/`,{status: status}).then((response) => {
+         return response.data;
+      });
+   }
+}

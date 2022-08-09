@@ -1,9 +1,10 @@
-import { usersAPI } from "../../api/api";
+import { profileAPI } from "../../api/api";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const BTN_INCREMENT = "BTN-INCREMENT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_STATUS = "SET_STATUS";
 
 const initialState = {
    postData: [
@@ -14,6 +15,7 @@ const initialState = {
    newPostText: "Enter message",
    newLikeCount: 0,
    profile: null,
+   status: "",
 };
 
 function profileReducer(state = initialState, action) {
@@ -38,6 +40,11 @@ function profileReducer(state = initialState, action) {
          return {
             ...state,
             newLikeCount: (state.newLikeCount += 1),
+         };
+      case SET_STATUS:
+         return {
+            ...state,
+            status: action.status,
          };
       case SET_USER_PROFILE:
          return {
@@ -82,8 +89,33 @@ export const getUsersProfile = (router) => {
       if (!profileId) {
          profileId = 25067;
       }
-      usersAPI.setUsers(profileId).then((data) => {
+      profileAPI.getProfile(profileId).then((data) => {
          dispatch(setUsersProfile(data));
+      });
+   };
+};
+
+export const setStatus = (status) => {
+   return { type: "SET_STATUS", status };
+};
+
+export const getStatus = (router) => {
+   return (dispatch) => {
+      let profileId = router;
+      if (!profileId) {
+         profileId = 25067;
+      }
+      profileAPI.getStatus(profileId).then((response) => {
+         dispatch(setStatus(response));
+      });
+   };
+};
+
+export const upDateStatus = (status) => {
+   return (dispatch) => {
+         profileAPI.upDateStatus(status).then((data) => {
+            if (data.resultCode === 0){
+         dispatch(setStatus(status))}
       });
    };
 };
