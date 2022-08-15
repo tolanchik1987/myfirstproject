@@ -1,3 +1,4 @@
+
 const SUBMIT_FORM = "SUBMIT_FORM";
 
 const initialState = {
@@ -8,16 +9,19 @@ const initialState = {
 
 const formReducer = (state = initialState, action) => {
    switch (action.type) {
-      case SUBMIT_FORM:
-         return { ...state };
+      case SUBMIT_FORM:        
+         return { 
+            ...state, ...action.data 
+         };
       default:
          return state;
    }
 };
 
-export const updateAction = () => {
+export const updateAction = (login, password, rememberMy) => {
    return {
       type: "SUBMIT_FORM",
+      data: { login, password, rememberMy }
    };
 };
 

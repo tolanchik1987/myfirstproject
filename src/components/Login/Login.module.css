@@ -50,6 +50,10 @@
     width: 150px;
     box-shadow: 2px 2px 8px black;
     cursor: pointer;
+    border: 3px double rgba(29, 13, 253, 0.507);
+    background-image: linear-gradient(45deg, rgb(112, 140, 173) 11.2%, rgba(252, 252, 252, 0.78) 100.2%);
+    border-radius: 20px;
+    font-weight: 700;
 }
 
 .loginConteiner {

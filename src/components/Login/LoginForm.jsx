@@ -1,35 +1,22 @@
-// import React from 'react'
-// import classes from "./Login.module.css"
-
-// const Login = (props) => {
-//   return (
-//     <div className={classes.LoginFormConteiner}>
-//         Login
-//             Email
-//             <input type="text" />
-//     </div>
-//   )
-// }
-
-// export default Login
 import React from "react";
 import classes from "./Login.module.css";
 import { useForm } from "react-hook-form";
 import { updateAction } from "../redax/formReducer";
 import { connect } from "react-redux"
 
-function LoginForm(props) {
+function LoginForm (props) {
    const {
       register,
       handleSubmit,
       reset,
-      formState: { errors, isValid },
+      formState: { errors, isValid ,},
    } = useForm({
       mode: "onChange",
    });
    const onSubmit = (data) => {
-      // props.updateAction((data))
-      console.log((data));
+      
+      console.log(data.login, data.password, data.rememberMy);
+      updateAction(data)
       reset();
    };
 
@@ -89,24 +76,24 @@ function LoginForm(props) {
                   />
                   <label htmlFor="rememberMy">Remember my</label>
                </div>
-               <input
-                  type={"submit"}
-                  className={classes.btn_submit}
-                  disabled={!isValid}
-               />
+                  <input
+                     type={"submit"}
+                     className={classes.btn_submit}
+                     disabled={!isValid}
+                  />
             </div>
          </form>
       </div>
    );
 }
 
-export default function Login (props) {
-   return (
-      <div>
-         <LoginForm />
-      </div>
-   )
+//  const Login = (props) => {
+//    return (
+//       <div>
+//          <LoginForm  />
+//       </div>
+//    )
    
-}
+// }
 
-connect(({ login, password }) => ({ login, password }), updateAction)(LoginForm);
+export default connect(({ login, password, rememberMy}) => ({ login, password, rememberMy }), updateAction)(LoginForm);
