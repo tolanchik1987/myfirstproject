@@ -1,36 +1,69 @@
 import React from "react";
 import classes from "./Login.module.css";
 import { useForm } from "react-hook-form";
-import { updateAction } from "../redax/formReducer";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
+import { login, logout } from "../redax/authReducer";
+import { Navigate } from "react-router-dom";
 
-function LoginForm (props) {
+import styled, { keyframes } from 'styled-components';
+import { wobble } from 'react-animations';
+
+const flashAnimation = keyframes`${wobble}`;
+ 
+const BouncyDiv = styled.div`
+  animation: 1s ${flashAnimation};
+`;
+
+
+function LoginForm(props) {
    const {
       register,
       handleSubmit,
       reset,
-      formState: { errors, isValid ,},
+      formState,
+      formState: { errors, submittedData, isValid },
    } = useForm({
       mode: "onChange",
    });
    const onSubmit = (data) => {
-      
-      console.log(data.login, data.password, data.rememberMy);
-      updateAction(data)
-      reset();
+      props.login(data.email, data.password, data.rememberMe);
+      let q = document.getElementById("showPassword");
+      q.checked=false
+      let x = document.getElementById("password");
+      x.type = "password";
    };
+
+   React.useEffect(() => {
+      if (formState.isSubmitSuccessful) {
+         reset({ email: "", password: "", rememberMe: false});
+      }
+   }, [formState, submittedData, reset]);
+
+   if (props.isAuth) {
+      return <Navigate replace to={"/profile"} />;
+   }
+
+   const showPassword = () => {
+      let x = document.getElementById("password");
+      if (x.type === "password") {
+          x.type = "text";
+      } else {
+          x.type = "password";
+      }
+  }
 
    return (
       <div className={classes.wrapper_formLogin}>
+         <BouncyDiv>
          <form onSubmit={handleSubmit(onSubmit)}>
             <div className={classes.formLogin_conteiner}>
                <h1>Sing in</h1>
                <div className={classes.loginConteiner}>
-                  <label htmlFor="login">Login</label>
+                  <label htmlFor="email">Login</label>
                   <input
-                     name={"login"}
-                     placeholder={"enter login"}
-                     {...register("login", {
+                     name={"email"}
+                     placeholder={"enter email"}
+                     {...register("email", {
                         required: "Это поле обязательно!",
                         minLength: {
                            value: 5,
@@ -42,14 +75,17 @@ function LoginForm (props) {
                         },
                      })}
                   />
-                  {errors?.login && (
-                     <span> {errors?.login?.message || "Error!"} </span>
+                  {errors?.email && (
+                     <span> {errors?.email?.message || "Error!"} </span>
                   )}
                </div>
                <div className={classes.loginConteiner}>
                   <label htmlFor="password">Password</label>
                   <input
                      name={"password"}
+                     id={"password"}
+                     type={"password"}
+                     className={classes.inputPassword}
                      placeholder={"enter password"}
                      {...register("password", {
                         required: "Это поле обязательно!",
@@ -67,33 +103,34 @@ function LoginForm (props) {
                   {errors?.password && (
                      <span> {errors?.password?.message || "Error"}</span>
                   )}
+                  <div className={classes.checkbox_showPassword}>
+                     <input type="checkbox" id={"showPassword"} onClick={showPassword} />
+                     Show Password
+                  </div>
                </div>
                <div className={classes.checkbox_rememberMy}>
                   <input
                      type={"checkbox"}
-                     name={"rememberMy"}
-                     {...register("rememberMy")}
+                     name={"rememberMe"}
+                     {...register("rememberMe")}
                   />
-                  <label htmlFor="rememberMy">Remember my</label>
+                  <label htmlFor="rememberMe">Remember my</label>
                </div>
-                  <input
-                     type={"submit"}
-                     className={classes.btn_submit}
-                     disabled={!isValid}
-                  />
+               <input
+                  type={"submit"}
+                  name={"submit"}
+                  className={classes.btn_submit}
+                  disabled={!isValid}
+               />
             </div>
          </form>
+         </BouncyDiv>
       </div>
    );
 }
 
-//  const Login = (props) => {
-//    return (
-//       <div>
-//          <LoginForm  />
-//       </div>
-//    )
-   
-// }
+const mapSateToProps = (state) => ({
+   isAuth: state.authUser.isAuth,
+});
 
-export default connect(({ login, password, rememberMy}) => ({ login, password, rememberMy }), updateAction)(LoginForm);
+export default connect(mapSateToProps, { login, logout })(LoginForm);

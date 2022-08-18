@@ -56,6 +56,11 @@
     font-weight: 700;
 }
 
+.checkbox_showPassword input {
+    margin: 5px 0 30px 0;
+    width: 30px;
+}
+
 .loginConteiner {
     display: flex;
     flex-direction: column;

@@ -9,8 +9,8 @@ const instance = axios.create({
 });
 
 export const usersAPI = {
-   async getUsers(curentPage, pageSize) {
-      return await instance
+   getUsers(curentPage, pageSize) {
+      return instance
          .get(`users?page=${curentPage}&count=${pageSize}`)
          .then((response) => {
             return response.data;
@@ -18,43 +18,47 @@ export const usersAPI = {
    },
 
    async followSuccess(userId) {
-      return await instance.post(`follow/${userId}`).then((response) => {
-         return response.data;
-      });
+      const response = await instance.post(`follow/${userId}`)
+      return response.data;
+   
    },
 
    async unFollowSuccess(userId) {
-      return await instance.delete(`follow/${userId}`).then((response) => {
-         return response.data;
-      });
+      const response = await instance.delete(`follow/${userId}`)
+      return response.data;
    },
 
    async setAuthUsers() {
-      return await instance.get("auth/me").then((response) => {
-         return response.data;
-      });
+      const response = await instance.get("auth/me")
+      return response.data;
    },
 
-   // async setUsers(profileId) {
-   //    console.warn("Obsolut method. Plise ProfileAPI object")
-   //       return ProfileAPI.getProfile(profileId)
-   // },
+   async login(email, password, rememberMe=false) {
+      const response = await instance.post("auth/login", {email, password, rememberMe});
+      return response.data
+   },
+   async logout() {
+      const response = await instance.delete("auth/login");
+      return response.data
+   },
+
+   async captcha() {
+      const response = await instance.get("security/get-captcha-url")
+      return response.data
+   },
 };
 
 export const profileAPI = {
-   async getProfile(profileId) {
-      return await instance.get(`profile/${profileId}`).then((response) => {
-         return response.data;
-      });
+    async getProfile(profileId) {
+      const response = await instance.get(`profile/${profileId}`);
+      return response.data;
    },
-   async getStatus(userId) {
-      return await instance.get(`profile/status/${userId}`).then((response) => {
-         return response.data;
-      });
+    async getStatus(userId) {
+      const response = await instance.get(`profile/status/${userId}`);
+       return response.data;
    },
    async upDateStatus(status) {
-      return await instance.put(`profile/status/`,{status: status}).then((response) => {
-         return response.data;
-      });
+      const response = await instance.put(`profile/status/`, { status: status });
+      return response.data;
    }
 }
