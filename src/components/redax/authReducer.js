@@ -1,6 +1,7 @@
 import { usersAPI } from "../../api/api";
 
 const SET_USER_DATA = "SET_USER_DATA";
+const SET_MESSAGE_ERROR = "SET_MESSAGE_ERROR"
 
 const initialState = {
    userId: null,
@@ -8,14 +9,15 @@ const initialState = {
    email: null,
    isFetching: null,
    isAuth: false,
+   messages: ""
 };
-
-const error = "Error invalid email or password!"
 
 const authReducer = (state = initialState, action) => {
    switch (action.type) {
       case SET_USER_DATA:
          return { ...state, ...action.payload };
+      case SET_MESSAGE_ERROR:
+         return { ...state, messages: action.messages}
       default:
          return state;
    }
@@ -24,7 +26,14 @@ const authReducer = (state = initialState, action) => {
 export const setAuthUserData = (userId, email, login, isAuth) => {
    return {
       type: "SET_USER_DATA",
-      payload: { userId, email, login, isAuth },
+      payload: { userId, email, login, isAuth},
+   };
+};
+
+export const setMessageError = (messages) => {
+   return {
+      type: "SET_MESSAGE_ERROR",
+      messages,
    };
 };
 
@@ -45,7 +54,8 @@ export const login = (email, password, rememberMe) => (dispatch) => {
       if (data.resultCode === 0) {
          dispatch(setAuth());    
       } 
-      alert(`${error}`)  
+      const messages = data.messages
+      dispatch(setMessageError(messages));
    });
 };
 

@@ -1,6 +1,5 @@
 import "./App.css";
 import "../src/components/Null.css";
-
 import Navbar from "./components/Navbar/Navbar";
 import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
@@ -11,8 +10,19 @@ import UsersConteiner from "./components/Users/UsersConteiner";
 import ProfileConteiner from "./components/Profile/ProfileConteiner";
 import HeaderConteiner from "./components/Header/HeaderConteiner";
 import LoginForm from "./components/Login/LoginForm";
+import { connect } from "react-redux";
+import { useEffect } from "react";
+import { initialize } from "./components/redax/appReducer";
+import Preloader from "./components/common/preloader/Preloader";
 
 const App = (props) => {
+   useEffect(()=>{
+      props.initialize()
+   })
+
+   if (!props.initialized){ 
+      return <Preloader />
+   }
    return (
       <BrowserRouter>
          <div className="app-wrapper">
@@ -24,31 +34,31 @@ const App = (props) => {
                   <Route path="/" element={<ProfileConteiner />} />
                   <Route path="/profile" element={<ProfileConteiner />} />
                   <Route
-                     path="/Profile/:profileId"
+                     path="/profile/:profileId"
                      element={<ProfileConteiner />}
                   />
                   <Route
-                     path="/Dialogs"
+                     path="/dialogs"
                      element={<DialogsConteiner />}
                   />
-                  <Route path="/News" element={<News />} />
-                  <Route path="/Settings" element={<Settings />} />
-                  <Route path="/Music" element={<Music />} />
-                  <Route path="/Users" element={<UsersConteiner />} />
+                  <Route path="/news" element={<News />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/music" element={<Music />} />
+                  <Route path="/users" element={<UsersConteiner />} />
                   <Route
-                     path="/Dialogs/dialog_1"
-                     element={<DialogsConteiner />}
-                  />
-                  <Route
-                     path="/Dialogs/dialog_2"
+                     path="/dialogs/dialog_1"
                      element={<DialogsConteiner />}
                   />
                   <Route
-                     path="/Dialogs/dialog_3"
+                     path="/dialogs/dialog_2"
                      element={<DialogsConteiner />}
                   />
                   <Route
-                     path="/Dialogs/dialog_4"
+                     path="/dialogs/dialog_3"
+                     element={<DialogsConteiner />}
+                  />
+                  <Route
+                     path="/dialogs/dialog_4"
                      element={<DialogsConteiner />}
                   />
                </Routes>
@@ -58,4 +68,9 @@ const App = (props) => {
    );
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+   initialized: state.app.initialized
+})
+
+export default connect(mapStateToProps, { initialize })(App);
+// export default App;

@@ -1,7 +1,8 @@
 import React from "react";
 import Preloader from "../../common/preloader/Preloader";
 import classes from "./ProfileInfo.module.css";
-import ProfileStatus from "./ProfileStatus/ProfileStatus";
+// import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import ProfileStatusFunctional from "./ProfileStatus/ProfileStatusFunctional"
 
 const ProfileInfo = (props) => {
    if (!props.profile) {
@@ -10,11 +11,11 @@ const ProfileInfo = (props) => {
 
    return (
       <div>
-         <img
+         {/* <img
             alt=""
             className={classes.img_1}
             src="https://cdn.slidemodel.com/wp-content/uploads/8151-01-social-media-word-cloud-picture-1.jpg"
-         />
+         /> */}
          <div className={classes.item}>
             <div className={classes.item_ava}>
                <img
@@ -40,7 +41,7 @@ const ProfileInfo = (props) => {
             </div>
          </div>
          <div className={classes.profileStatus}>
-            <ProfileStatus status={props.status} upDateStatus={props.upDateStatus}/>
+            <ProfileStatusFunctional status={props.status} upDateStatus={props.upDateStatus}/>
          </div>
       </div>
    );
