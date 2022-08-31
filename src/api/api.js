@@ -62,3 +62,10 @@ export const profileAPI = {
       return response.data;
    }
 }
+
+export const NewsAPI = {
+   async getNews() {
+      const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=ru&apiKey=dc483c3c18ed49168977337a58a3b8f5`)
+         return response.data;
+   },
+}

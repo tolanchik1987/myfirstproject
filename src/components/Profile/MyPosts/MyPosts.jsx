@@ -32,7 +32,6 @@ const MyPosts = (props) => {
 
    return (
       <div className={classes.posts}>
-         
          <div className={classes.item}>
             <h2>Опубликавать пост:</h2>
             <textarea

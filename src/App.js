@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { initialize } from "./components/redax/appReducer";
 import Preloader from "./components/common/preloader/Preloader";
 
+
 const App = (props) => {
    useEffect(()=>{
       props.initialize()
@@ -23,7 +24,7 @@ const App = (props) => {
    if (!props.initialized){ 
       return <Preloader />
    }
-   return (
+   return (   
       <BrowserRouter>
          <div className="app-wrapper">
             <HeaderConteiner />

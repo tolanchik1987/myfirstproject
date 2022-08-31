@@ -108,45 +108,36 @@ export const toggleIsFollowingProgress = (isFetching, userId) => {
 };
 
 export const getUsers = (curentPage, pageSize) => {
-   return (dispatch) => {
+   return async (dispatch) => {
       dispatch(setCurentPage(curentPage));
       dispatch(toggleIsFetching(true));
-      usersAPI.getUsers(curentPage, pageSize).then((data) => {
-         dispatch(setUsers(data.items));
-         dispatch(toggleIsFetching(false));
-         dispatch(setUsersTotalCount(data.totalCount))
-      });
+      const data = await usersAPI.getUsers(curentPage, pageSize);
+      dispatch(setUsers(data.items));
+      dispatch(toggleIsFetching(false));
+      dispatch(setUsersTotalCount(data.totalCount));
    };
 };
 
 export const follow = (userId) => {
-   return (dispatch) => {
+   return async (dispatch) => {
       dispatch(toggleIsFollowingProgress(true, userId));
-      usersAPI.followSuccess(userId).then((data) => {
-         if (data.resultCode === 0) {
-            dispatch(followSuccess(userId))
-         }
-         dispatch(toggleIsFollowingProgress(
-            false,
-            userId
-         ));
-      });
-   }
-}
+      const data = await usersAPI.followSuccess(userId);
+      if (data.resultCode === 0) {
+         dispatch(followSuccess(userId));
+      }
+      dispatch(toggleIsFollowingProgress(false, userId));
+   };
+};
 
 export const unFollow = (userId) => {
-   return (dispatch) => {
+   return async (dispatch) => {
       dispatch(toggleIsFollowingProgress(true, userId));
-      usersAPI.unFollowSuccess(userId).then((data) => {
-         if (data.resultCode === 0) {
-            dispatch(unFollowSuccess(userId));
-         }
-         dispatch(toggleIsFollowingProgress(
-            false,
-            userId
-         ));
-      });
-   }
-}
+      const data = await usersAPI.unFollowSuccess(userId);
+      if (data.resultCode === 0) {
+         dispatch(unFollowSuccess(userId));
+      }
+      dispatch(toggleIsFollowingProgress(false, userId));
+   };
+};
 
 export default usersReducer;

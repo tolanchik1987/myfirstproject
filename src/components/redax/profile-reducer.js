@@ -100,23 +100,21 @@ export const setStatus = (status) => {
 };
 
 export const getStatus = (router) => {
-   return (dispatch) => {
+   return async (dispatch) => {
       let profileId = router;
       if (!profileId) {
          profileId = 25067;
       }
-      profileAPI.getStatus(profileId).then((response) => {
+      const response = await profileAPI.getStatus(profileId)
          dispatch(setStatus(response));
-      });
    };
 };
 
 export const upDateStatus = (status) => {
-   return (dispatch) => {
-         profileAPI.upDateStatus(status).then((data) => {
+   return async (dispatch) => {
+         const data = await profileAPI.upDateStatus(status)
             if (data.resultCode === 0){
          dispatch(setStatus(status))}
-      });
    };
 };
 

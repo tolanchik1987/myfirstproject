@@ -38,33 +38,30 @@ export const setMessageError = (messages) => {
 };
 
 export const setAuth = () => {
-   return (dispatch) => {
-      usersAPI.setAuthUsers().then((data) => {
+   return async (dispatch) => {
+      const data = await usersAPI.setAuthUsers()
          if (data.resultCode === 0) {
             const { id, email, login } = data.data;
             dispatch(setAuthUserData(id, email, login, true));
          }
-      });
    };
 };
 
 
-export const login = (email, password, rememberMe) => (dispatch) => {
-   usersAPI.login(email, password, rememberMe).then((data) => {
+export const login = (email, password, rememberMe) => async (dispatch) => {
+   const data = await usersAPI.login(email, password, rememberMe)
       if (data.resultCode === 0) {
          dispatch(setAuth());    
       } 
       const messages = data.messages
       dispatch(setMessageError(messages));
-   });
 };
 
-export const logout = () => (dispatch) => {
-   usersAPI.logout().then((data) => {
+export const logout = () => async (dispatch) => {
+   const data = await usersAPI.logout()
       if (data.resultCode === 0) {
          dispatch(setAuthUserData(null, null, null, false));
       }
-   });
 };
 
 export default authReducer;

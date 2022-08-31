@@ -1,5 +1,14 @@
 .conteiner {
     font-size: 24px;
     margin: 20px;
-    color: rgb(250, 250, 250);
+}
+.wrapper {
+    border: 1px solid #444;
+    height: 84vh;
+    border-radius: 5px;
+    box-shadow: 4px 4px 18px #333;
+    background-color: rgb(253, 240, 240);
+    color: black;
+    text-align: center;
+    text-shadow: 1px 1px 2px #444;
 }
