@@ -4,7 +4,7 @@ import "../src/components/Null.css";
 import Navbar from "./components/Navbar/Navbar";
 // import News from "./components/News/News";
 // import Settings from "./components/Settings/Settings";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 // import DialogsConteiner from "./components/Dialogs/DialogsConteiner";
 import UsersConteiner from "./components/Users/UsersConteiner";
 import ProfileConteiner from "./components/Profile/ProfileConteiner";
@@ -31,7 +31,7 @@ const App = (props) => {
       return <Preloader />;
    }
    return (
-      <BrowserRouter>
+      <HashRouter basename={process.env.PUBLIC_URL}>
          <div className="app-wrapper">
             <HeaderConteiner />
             <Navbar />
@@ -40,7 +40,7 @@ const App = (props) => {
                   <Route
                      path="/login"
                      element={
-                        <React.Suspense fallback="loading...">
+                        <React.Suspense fallback={<div className={"lizyLoad"}>loading...</div>}>
                            <LoginForm />
                         </React.Suspense>
                      }
@@ -54,7 +54,7 @@ const App = (props) => {
                   <Route
                      path="/dialogs"
                      element={
-                        <React.Suspense fallback="loading...">
+                        <React.Suspense fallback={<div className={"lizyLoad"}>loading...</div>}>
                            <DialogsConteiner />
                         </React.Suspense>
                      }
@@ -62,7 +62,7 @@ const App = (props) => {
                   <Route
                      path="/news"
                      element={
-                        <React.Suspense fallback="loading...">
+                        <React.Suspense fallback={<div className={"lizyLoad"}>loading...</div>}>
                            <News />
                         </React.Suspense>
                      }
@@ -70,7 +70,7 @@ const App = (props) => {
                   <Route
                      path="/settings"
                      element={
-                        <React.Suspense fallback="loading...">
+                        <React.Suspense fallback={<div className={"lizyLoad"}>loading...</div>}>
                            <Settings />
                         </React.Suspense>
                      }
@@ -79,7 +79,7 @@ const App = (props) => {
                   <Route
                      path="/music"
                      element={
-                        <React.Suspense fallback="loading...">
+                        <React.Suspense fallback={<div className={"lizyLoad"}>loading...</div>}>
                            <Music />
                         </React.Suspense>
                      }
@@ -92,7 +92,7 @@ const App = (props) => {
                   <Route
                      path="/dialogs/dialog_2"
                      element={
-                        <React.Suspense fallback="loading...">
+                        <React.Suspense fallback={<div className={"lizyLoad"}>loading...</div>}>
                            <DialogsConteiner />
                         </React.Suspense>
                      }
@@ -100,7 +100,7 @@ const App = (props) => {
                   <Route
                      path="/dialogs/dialog_3"
                      element={
-                        <React.Suspense fallback="loading...">
+                        <React.Suspense fallback={<div className={"lizyLoad"}>loading...</div>}>
                            <DialogsConteiner />
                         </React.Suspense>
                      }
@@ -108,7 +108,7 @@ const App = (props) => {
                   <Route
                      path="/dialogs/dialog_4"
                      element={
-                        <React.Suspense fallback="loading...">
+                        <React.Suspense fallback={<div className={"lizyLoad"}>loading...</div>}>
                            <DialogsConteiner />
                         </React.Suspense>
                      }
@@ -116,7 +116,7 @@ const App = (props) => {
                </Routes>
             </div>
          </div>
-      </BrowserRouter>
+      </HashRouter>
    );
 };
 
