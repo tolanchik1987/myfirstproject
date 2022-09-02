@@ -60,6 +60,12 @@ export const profileAPI = {
    async upDateStatus(status) {
       const response = await instance.put(`profile/status/`, { status: status });
       return response.data;
+   },
+   async savePhoto(photo) {
+      const formData = new FormData();
+      formData.append("image", photo);
+      const response = await instance.put(`profile/photo/`, formData, { "Content-Type": "multipart/form-data" },);
+      return response.data;
    }
 }
 

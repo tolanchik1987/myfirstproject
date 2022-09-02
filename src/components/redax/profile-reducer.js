@@ -5,6 +5,7 @@ const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const BTN_INCREMENT = "BTN-INCREMENT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS";
+const SET_PHOTO = "SET_PHOTO"
 
 const initialState = {
    postData: [
@@ -51,6 +52,10 @@ function profileReducer(state = initialState, action) {
             ...state,
             profile: action.profile,
          };
+         case SET_PHOTO: 
+         return {
+            ...state, profile: {...state, photos: action.photo}
+         }
       // this._state.profilePage.newLikeCount=+1;
       default:
          return state;
@@ -99,6 +104,13 @@ export const setStatus = (status) => {
    return { type: "SET_STATUS", status };
 };
 
+export const setPhoto = (photo) => {
+   return {
+      type: "SET_PHOTO",
+      photo,
+   };
+};
+
 export const getStatus = (router) => {
    return async (dispatch) => {
       let profileId = router;
@@ -106,15 +118,23 @@ export const getStatus = (router) => {
          profileId = 25067;
       }
       const response = await profileAPI.getStatus(profileId)
-         dispatch(setStatus(response));
+      dispatch(setStatus(response));
    };
 };
 
 export const upDateStatus = (status) => {
    return async (dispatch) => {
-         const data = await profileAPI.upDateStatus(status)
-            if (data.resultCode === 0){
+      const data = await profileAPI.upDateStatus(status)
+         if (data.resultCode === 0){
          dispatch(setStatus(status))}
+   };
+};
+
+export const savePhoto = (photo) => {
+   return async (dispatch) => {
+      const data = await profileAPI.savePhoto(photo)
+         if (data.resultCode === 0){
+         dispatch(setPhoto(data.data.photos))}
    };
 };
 

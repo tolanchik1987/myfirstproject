@@ -40,10 +40,10 @@ class ProfileStatus extends React.Component {
             {!this.state.editMode && (
                <div>
                   <span onClick={this.activateEditMode}>
-                     {this.props.status || "Click this for enter status"}
+                     {this.props.status || "Кликни здесь для изменения статуса!"} 
                   </span>
-               </div>
-            )}
+               </div> 
+            )} 
             {this.state.editMode && (
                <div className={classes.ProfileStatusText}>
                   <input

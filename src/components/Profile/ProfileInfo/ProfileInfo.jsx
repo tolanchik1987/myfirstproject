@@ -1,30 +1,40 @@
 import React from "react";
 import Preloader from "../../common/preloader/Preloader";
 import classes from "./ProfileInfo.module.css";
-import ProfileStatusFunctional from "./ProfileStatus/ProfileStatusFunctional"
+import ProfileStatusFunctional from "./ProfileStatus/ProfileStatusFunctional";
 
 const ProfileInfo = (props) => {
+const [hiden, setHiden] = React.useState(true)
+
+const changHiden = () =>{
+   setHiden(true)
+} 
+
+const visibleLoadAvatar = () => {
+   setHiden(false)
+}
+
    if (!props.profile) {
       return <Preloader />;
    }
 
+   const handleFileSelect = (event) => {
+      props.savePhoto(event.target.files[0]);
+   };
+
    return (
       <div>
-         {/* <img
-            alt=""
-            className={classes.img_1}
-            src="https://cdn.slidemodel.com/wp-content/uploads/8151-01-social-media-word-cloud-picture-1.jpg"
-         /> */}
          <div className={classes.item}>
             <div className={classes.item_ava}>
-               <img
-                  alt=""
-                  src={
-                     props.profile.photos.large
-                        ? props.profile.photos.large
-                        : "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745"
-                  }
-               />
+               <div className={classes.conteinerPhoto}>
+                  <img
+                     alt=""
+                     src={
+                        props.profile.photos.large ||
+                        "https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745"
+                     }
+                  />
+               </div>
                <div className={classes.userName}>{props.profile.fullName}</div>
                <div className={classes.userInfo}>
                   <div>{props.profile.aboutMe}</div>
@@ -39,8 +49,17 @@ const ProfileInfo = (props) => {
                </div>
             </div>
          </div>
+         <div onClick={visibleLoadAvatar} style={{cursor:"pointer", paddingLeft:20}}> 
+            Изменить аватар: кликнуть здесь!
+            {props.isOwner && (
+               <input type={"file"} onChange={handleFileSelect} hidden={hiden} onClick={changHiden} />
+            )}
+         </div>
          <div className={classes.profileStatus}>
-            <ProfileStatusFunctional status={props.status} upDateStatus={props.upDateStatus}/>
+            <ProfileStatusFunctional
+               status={props.status}
+               upDateStatus={props.upDateStatus}
+            />
          </div>
       </div>
    );

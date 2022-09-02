@@ -42,3 +42,14 @@
   .profileStatus{
     padding-bottom: 20px;
   }
+
+  .myPhoto {
+    width: 200px;
+  }
+
+  .conteinerPhoto > div {
+    width: 120px;
+    color: antiquewhite;
+    letter-spacing: 2px;
+    font-size: 16px;
+  }

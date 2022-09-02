@@ -2,11 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import Profile from "./Profile";
 import classes from "./Profile.module.css";
-import { getUsersProfile, getStatus, upDateStatus } from "../redax/profile-reducer";
+import {
+   getUsersProfile,
+   getStatus,
+   upDateStatus,
+} from "../redax/profile-reducer";
 import { toggleIsFetching } from "../redax/users-reducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import withAuthRedirectHOC from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
+import {savePhoto} from "../redax/profile-reducer"
 
 function withRouter(Component) {
    function ComponentWithRouterProp(props) {
@@ -22,13 +27,19 @@ function withRouter(Component) {
 class ProfileConteiner extends React.Component {
    componentDidMount() {
       this.props.getUsersProfile(this.props.router.params.profileId);
-      this.props.getStatus(this.props.router.params.profileId)
+      this.props.getStatus(this.props.router.params.profileId);
    }
 
    render() {
       return (
          <div className={classes.content}>
-            <Profile {...this.props} profile={this.props.profile} status={this.props.status} upDateStatus={this.props.upDateStatus}/>
+            <Profile
+               {...this.props}
+               isOwner={!this.props.router.params.profileId}
+               profile={this.props.profile}
+               status={this.props.status}
+               upDateStatus={this.props.upDateStatus}
+            />
          </div>
       );
    }
@@ -41,7 +52,13 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-   connect(mapStateToProps, { toggleIsFetching, getUsersProfile,getStatus,upDateStatus ,}),
+   connect(mapStateToProps, {
+      toggleIsFetching,
+      getUsersProfile,
+      getStatus,
+      upDateStatus,
+      savePhoto,
+   }),
    withRouter,
    withAuthRedirectHOC
 )(ProfileConteiner);

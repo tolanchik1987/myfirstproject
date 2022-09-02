@@ -31,7 +31,7 @@ const App = (props) => {
       return <Preloader />;
    }
    return (
-      <HashRouter basename={process.env.PUBLIC_URL}>
+      <HashRouter>
          <div className="app-wrapper">
             <HeaderConteiner />
             <Navbar />

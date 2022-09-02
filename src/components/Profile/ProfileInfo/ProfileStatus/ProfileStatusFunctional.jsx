@@ -27,7 +27,7 @@ const ProfileStatus = (props) => {
          {!editMode && (
             <div>
                <span onClick={activateEditMode}>
-                  {props.status || "Click this for enter status"}
+                  {props.status || "Кликни здесь для изменения статуса!"} 
                </span>
             </div>
          )}
