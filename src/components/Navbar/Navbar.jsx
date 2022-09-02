@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./Navbar.module.css";
 import Sidebar from "./Sidebar/Sidebar";
+import { FiHeadphones } from "react-icons/fi";
+import { BiCog } from "react-icons/bi";
 
 const Navbar = (props) => {
    return (
@@ -42,12 +44,12 @@ const Navbar = (props) => {
 
             <div>
                <NavLink
-                  to="/Music"
+                  to="/Music" 
                   className={(navData) =>
                      navData.isActive ? classes.activeLink : classes.notactive
                   }
                >
-                  Music
+                  Music <FiHeadphones />
                </NavLink>
             </div>
 
@@ -69,7 +71,7 @@ const Navbar = (props) => {
                      navData.isActive ? classes.activeLink : classes.notactive
                   }
                >
-                  Settings
+                  Settings <BiCog />
                </NavLink>
             </div>
          </nav>

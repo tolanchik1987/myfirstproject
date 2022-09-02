@@ -8,7 +8,7 @@ const News = (props) => {
    const getNews = async () => {
       const data = await NewsAPI.getNews();
       const newsmap = data.articles.map((u) => u);
-      setNews(newsmap.map((w) => w.title));
+      setNews(newsmap.map((w) => w.title).join("").split(". -"));
       return data;
    };
    getNews();
@@ -16,7 +16,7 @@ const News = (props) => {
       <div className={classes.conteiner}>
          <div className={classes.wrapper}>
             <h2>NEWS</h2>
-            <span>{news}</span>
+            <span className={classes.title}>{news}</span>
          </div>
       </div>
    );

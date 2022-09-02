@@ -2,8 +2,6 @@ import { useRef } from "react";
 import DialogItem from "./DialogItem/DialogItem";
 import classes from "./Dialogs.module.css";
 import Message from "./Message/Message";
-// import { Navigate } from "react-router-dom";
-// import DialogsConteiner from "./DialogsConteiner";
 
 const Dialogs = (props) => {
    const dialogElements = props.dialogsPage.dialogsData.map((dialog, index) => (
@@ -31,10 +29,6 @@ const Dialogs = (props) => {
       newMessageElement.current.value = "";
    };
 
-   // if (!props.isAuth) {
-   //    return <Navigate to={"/login"} />;
-   // }
-
    return (
       <div className={classes.conteiner_dialogs}>
          <div className={classes.dialogs_item}>{dialogElements}</div>
@@ -58,7 +52,7 @@ const Dialogs = (props) => {
                      onClick={buttonAddMessage}
                      type="button"
                   >
-                     Add
+                    Add
                   </button>
                </div>
             </div>
