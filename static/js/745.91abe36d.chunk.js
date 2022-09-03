@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmyfirstproject=self.webpackChunkmyfirstproject||[]).push([[745],{5143:function(e,c,s){s.r(c),s.d(c,{default:function(){return u}});s(2791);var t="Music_conteiner__tKJ-M",i=s.p+"static/media/music.eb30e8760153ba4ef2c4.mp3",r=s(184),u=function(e){return(0,r.jsxs)("div",{className:t,children:["Music",(0,r.jsx)("div",{children:(0,r.jsx)("audio",{autoPlay:"autoplay",controls:!0,children:(0,r.jsx)("source",{src:i,type:"audio/mpeg"})})})]})}}}]);
+//# sourceMappingURL=745.91abe36d.chunk.js.map
