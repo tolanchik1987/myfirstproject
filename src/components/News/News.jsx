@@ -7,9 +7,7 @@ const News = (props) => {
 
    const getNews = async () => {
       const data = await NewsAPI.getNews();
-      const newsmap = data.articles.map((u) => u);
-      setNews(newsmap.map((w) => w.title).join("").split(". -"));
-      return data;
+      return setNews(data.articles.map((w,i) => {return <b key={i}>{w.content}<br/></b>}));
    };
    getNews();
    return (

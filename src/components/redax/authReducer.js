@@ -1,7 +1,8 @@
-import { usersAPI } from "../../api/api";
+import { securityAPI, usersAPI } from "../../api/api";
 
 const SET_USER_DATA = "SET_USER_DATA";
-const SET_MESSAGE_ERROR = "SET_MESSAGE_ERROR"
+const SET_MESSAGE_ERROR = "SET_MESSAGE_ERROR";
+const SET_CAPTCHA_URL = "SET_CAPTCHA_URL"
 
 const initialState = {
    userId: null,
@@ -9,7 +10,8 @@ const initialState = {
    email: null,
    isFetching: null,
    isAuth: false,
-   messages: ""
+   messages: "",
+   captchaUrl: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -18,6 +20,8 @@ const authReducer = (state = initialState, action) => {
          return { ...state, ...action.payload };
       case SET_MESSAGE_ERROR:
          return { ...state, messages: action.messages}
+      case SET_CAPTCHA_URL:
+         return {...state, captchaUrl: action.url}
       default:
          return state;
    }
@@ -36,6 +40,13 @@ export const setMessageError = (messages) => {
       messages,
    };
 };
+
+export const setCaptchaUrl = (url) => {
+   return {
+      type: "SET_CAPTCHA_URL",
+      url,
+   }
+}
 
 export const setAuth = () => {
    return async (dispatch) => {
@@ -63,5 +74,12 @@ export const logout = () => async (dispatch) => {
          dispatch(setAuthUserData(null, null, null, false));
       }
 };
+
+export const getCaptchaUrl = () => async (dispatch) => {
+   const response = await securityAPI.getCaptchaUrl()
+      const captcha = response.data.url
+      dispatch(setCaptchaUrl(captcha));    
+};
+
 
 export default authReducer;

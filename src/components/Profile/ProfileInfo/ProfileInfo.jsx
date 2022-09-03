@@ -4,15 +4,15 @@ import classes from "./ProfileInfo.module.css";
 import ProfileStatusFunctional from "./ProfileStatus/ProfileStatusFunctional";
 
 const ProfileInfo = (props) => {
-const [hiden, setHiden] = React.useState(true)
+   const [hiden, setHiden] = React.useState(true);
 
-const changHiden = () =>{
-   setHiden(true)
-} 
+   const changHiden = () => {
+      setHiden(true);
+   };
 
-const visibleLoadAvatar = () => {
-   setHiden(false)
-}
+   const visibleLoadAvatar = () => {
+      setHiden(false);
+   };
 
    if (!props.profile) {
       return <Preloader />;
@@ -48,11 +48,36 @@ const visibleLoadAvatar = () => {
                   </div>
                </div>
             </div>
+            <div className={classes.contacts}>
+               <b>Contacts:</b>
+                {Object.keys(props.profile.contacts).map(key => {
+                  return <b key={key}>{key}: {props.profile.contacts[key]}</b>
+                })}        
+               {/* <b>vk: {props.profile.contacts.vk}</b>
+               <b>github: {props.profile.contacts.github}</b>
+               <b>instagram: {props.profile.contacts.instagram}</b>
+               <b>youtube: {props.profile.contacts.youtube}</b>
+               <b>website: {props.profile.contacts.website}</b> */}
+            </div>
          </div>
-         <div onClick={visibleLoadAvatar} style={{cursor:"pointer", paddingLeft:20}}> 
-            Изменить аватар: кликнуть здесь!
+         <div
+            onClick={visibleLoadAvatar}
+            style={{
+               cursor: "pointer",
+               paddingLeft: 20,
+               fontSize: 16,
+               fontFamily: "italic",
+               fontStyle: "italic",
+            }}
+         >
+            Изменить аватар
             {props.isOwner && (
-               <input type={"file"} onChange={handleFileSelect} hidden={hiden} onClick={changHiden} />
+               <input
+                  type={"file"}
+                  onChange={handleFileSelect}
+                  hidden={hiden}
+                  onClick={changHiden}
+               />
             )}
          </div>
          <div className={classes.profileStatus}>

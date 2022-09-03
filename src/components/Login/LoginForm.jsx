@@ -58,6 +58,7 @@ function LoginForm(props) {
                <div className={classes.formLogin_conteiner}>
                   <h1>Sing in</h1>
                   <span>{props.messageError}</span>
+                  {/* {if (props.messageError === "")}  */}
                   <div className={classes.loginConteiner}>
                      <label htmlFor="email">Login</label>
                      <input
