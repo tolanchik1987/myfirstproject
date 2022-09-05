@@ -33,8 +33,8 @@ export const usersAPI = {
       return response.data;
    },
 
-   async login(email, password, rememberMe=false) {
-      const response = await instance.post("auth/login", {email, password, rememberMe});
+   async login(email, password, rememberMe=false, captcha=null) {
+      const response = await instance.post("auth/login", {email, password, rememberMe, captcha});
       return response.data
    },
    async logout() {
@@ -62,10 +62,14 @@ export const profileAPI = {
       return response.data;
    },
    async savePhoto(photo) {
-      const formData = new FormData();
-      formData.append("image", photo);
-      const response = await instance.put(`profile/photo/`, formData, { "Content-Type": "multipart/form-data" },);
-      return response.data;
+         const formData = new FormData();
+         formData.append("image", photo);
+         const response = await instance.put(`profile/photo/`, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+        });
+         return response.data;
    }
 }
 
@@ -78,7 +82,8 @@ export const NewsAPI = {
 
 export const securityAPI = {
    async getCaptchaUrl() {
-      const response = await axios.get(`security/get-captcha-url`)
+      const response = await instance.get(`security/get-captcha-url`)
       return response.data;
+      
    },
 }

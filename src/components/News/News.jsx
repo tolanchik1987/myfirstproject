@@ -7,7 +7,18 @@ const News = (props) => {
 
    const getNews = async () => {
       const data = await NewsAPI.getNews();
-      return setNews(data.articles.map((w,i) => {return <b key={i}>{w.content}<br/></b>}));
+      return setNews(
+         data.articles.map((w, i) => {
+            return (
+               <p key={i}>
+                  <b style={{ textAlign: "center" }}>{w.title}</b>
+                  <br />
+                  {w.description}
+                  <br />
+               </p>
+            );
+         })
+      );
    };
    getNews();
    return (
@@ -15,6 +26,36 @@ const News = (props) => {
          <div className={classes.wrapper}>
             <h2>NEWS</h2>
             <span className={classes.title}>{news}</span>
+            <p>
+               <b style={{ textAlign: "center" }}>
+                  {"lorem5 fdgfd gsdf gdsf gdf"}
+               </b>
+               <br />
+               {
+                  "w.descrigadfgfdgadf gfdag dafgadfg fadg adfg adfg adf gadf gadf gfd ga gl hkjfjjjjjjjjjjjjjjjjjj jkafg la gljkdfgakdfgldjfg jdflgkflhfdagaldfkj hdkfljghdfjkhalgjkhdfljk ghladfhgljdfh ljahldfjhg ljdfhglorem  ption"
+               }
+               <br />
+            </p>
+            <p>
+               <b style={{ textAlign: "center" }}>
+                  {"lorem5 fdgfd gsdf gdsf gdf"}
+               </b>
+               <br />
+               {
+                  "w.descrigadfgfdgadf gfdag dafgadfg fadg adfg adfg adf gadf gadf gfd ga gl hkjfjjjjjjjjjjjjjjjjjj jkafg la gljkdfgakdfgldjfg jdflgkflhfdagaldfkj hdkfljghdfjkhalgjkhdfljk ghladfhgljdfh ljahldfjhg ljdfhglorem  ption"
+               }
+               <br />
+            </p>
+            <p>
+               <b style={{ textAlign: "center" }}>
+                  {"lorem5 fdgfd gsdf gdsf gdf"}
+               </b>
+               <br />
+               {
+                  "w.descrigadfgfdgadf gfdag dafgadfg fadg adfg adfg adf gadf gadf gfd ga gl hkjfjjjjjjjjjjjjjjjjjj jkafg la gljkdfgakdfgldjfg jdflgkflhfdagaldfkj hdkfljghdfjkhalgjkhdfljk ghladfhgljdfh ljahldfjhg ljdfhglorem  ption"
+               }
+               <br />
+            </p>
          </div>
       </div>
    );

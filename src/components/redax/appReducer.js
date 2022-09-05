@@ -22,11 +22,10 @@ export const setInitializedAction = (initialized) => ({
 });
 
 export const initialize = () => {
-    return async (dispatch) => {
-        await dispatch(setAuth())
-        dispatch(setInitializedAction(true))
-        
-    } 
- };
+   return async (dispatch) => {
+      await dispatch(setAuth());
+      dispatch(setInitializedAction(true));
+   };
+};
 
 export default authReducer;

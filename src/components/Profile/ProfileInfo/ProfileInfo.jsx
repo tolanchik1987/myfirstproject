@@ -50,14 +50,9 @@ const ProfileInfo = (props) => {
             </div>
             <div className={classes.contacts}>
                <b>Contacts:</b>
-                {Object.keys(props.profile.contacts).map(key => {
+               {Object.keys(props.profile.contacts).map(key => {
                   return <b key={key}>{key}: {props.profile.contacts[key]}</b>
-                })}        
-               {/* <b>vk: {props.profile.contacts.vk}</b>
-               <b>github: {props.profile.contacts.github}</b>
-               <b>instagram: {props.profile.contacts.instagram}</b>
-               <b>youtube: {props.profile.contacts.youtube}</b>
-               <b>website: {props.profile.contacts.website}</b> */}
+               })}        
             </div>
          </div>
          <div
@@ -76,7 +71,7 @@ const ProfileInfo = (props) => {
                   type={"file"}
                   onChange={handleFileSelect}
                   hidden={hiden}
-                  onClick={changHiden}
+                  onBlur={changHiden}
                />
             )}
          </div>

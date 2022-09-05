@@ -19,13 +19,14 @@
     align-items: center;
     justify-content: center;
     width: 600px;
-    height: 500px;
+    height: 700px;
     border: 3px double rgba(29, 13, 253, 0.507);
     box-shadow: 2px 2px 22px black;
     border-radius: 10%;
     padding: 25px;
     background-image: linear-gradient(45deg, rgb(112, 140, 173) 11.2%, rgba(27, 35, 109, 0.78) 100.2%);
 }
+
 
 .formLogin_conteiner h1 {
     text-align: center;
@@ -65,6 +66,11 @@
     display: flex;
     flex-direction: column;
 }
+
+.loginConteiner > img {
+    width: 250px;
+}
+
 .checkbox_rememberMy input{
     width: 30px;
 }

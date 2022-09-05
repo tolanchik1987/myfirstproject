@@ -10,8 +10,8 @@ const initialState = {
    email: null,
    isFetching: null,
    isAuth: false,
+   captchaUrl: null,
    messages: "",
-   captchaUrl: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -27,10 +27,10 @@ const authReducer = (state = initialState, action) => {
    }
 };
 
-export const setAuthUserData = (userId, email, login, isAuth) => {
+export const setAuthUserData = (userId, email, login, isAuth, captchaUrl) => {
    return {
       type: "SET_USER_DATA",
-      payload: { userId, email, login, isAuth},
+      payload: { userId, email, login, isAuth, captchaUrl},
    };
 };
 
@@ -52,17 +52,20 @@ export const setAuth = () => {
    return async (dispatch) => {
       const data = await usersAPI.setAuthUsers()
          if (data.resultCode === 0) {
-            const { id, email, login } = data.data;
-            dispatch(setAuthUserData(id, email, login, true));
+            const { id, email, login} = data.data;
+            dispatch(setAuthUserData(id, email, login, true, null));
          }
    };
 };
 
 
-export const login = (email, password, rememberMe) => async (dispatch) => {
-   const data = await usersAPI.login(email, password, rememberMe)
+export const login = (email, password, rememberMe, captcha) => async (dispatch) => {
+   const data = await usersAPI.login(email, password, rememberMe, captcha)
       if (data.resultCode === 0) {
          dispatch(setAuth());    
+      } 
+      if (data.resultCode === 10) {
+         dispatch(getCaptchaUrl())
       } 
       const messages = data.messages
       dispatch(setMessageError(messages));
@@ -77,8 +80,8 @@ export const logout = () => async (dispatch) => {
 
 export const getCaptchaUrl = () => async (dispatch) => {
    const response = await securityAPI.getCaptchaUrl()
-      const captcha = response.data.url
-      dispatch(setCaptchaUrl(captcha));    
+   const captchaUrl = response.url
+   dispatch(setCaptchaUrl(captchaUrl));    
 };
 
 
